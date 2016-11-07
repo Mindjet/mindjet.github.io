@@ -32,8 +32,16 @@ Check out the [Jekyll docs][jekyll-docs] for more info on how to get the most ou
 ```Java
 public static void getFixed(int index){
 
+	String string = "acsdsasd";
+	int num = 10;
+	boolean isforked = true;
+
 }
 ```
+
+wasidsasjdjasdjsajdsa
+
+`wakdhashdshaahsajhd`
 
 `Google` and **bold**  *italic*
 

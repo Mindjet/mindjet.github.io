@@ -15,6 +15,9 @@ gem "jekyll", "3.3.0"
 gem "minima", "~> 2.0"
 gem "redcarpet", "3.3.4"
 gem "kramdown", "1.12.0"
+# gem "pygments", "0.6.3"
+gem "rouge", "1.11.1"
+gem "rdiscount", "2.2.0.1"
 
 # If you want to use GitHub Pages, remove the "gem "jekyll"" above and
 # uncomment the line below. To upgrade, run `bundle update github-pages`.
