@@ -1,0 +1,103 @@
+---
+layout: post
+title: Glide
+date:  2016-11-07 22:41:05 +0800
+categories: android
+---
+
+## Introduction
+>Glide is a fast and efficient open source media management and image loading framework for Android that wraps media decoding, memory and disk caching, and resource pooling into a simple and easy to use interface.
+>
+>Glide's primary focus is on making scrolling any kind of a list of images as smooth and fast as possible, but Glide is also effective for almost any case where you need to fetch, resize, and display a remote image.
+
+You can click [here](https://github.com/bumptech/glide) to see more about `Glide`.
+
+## Import
+
+You are supposed to add the `Glide` dependency in the `build.gradle` of your module.
+
+{% highlight gradle%}
+compile 'com.github.bumptech.glide:glide:3.7.0'
+{%endhighlight%}
+
+It's highly recommended to check the [lastest version](https://github.com/bumptech/glide#download) of `Gradle` before you add.
+
+## Get started
+`Glide` is pretty easy to use, you will code like you are writing a sentence!
+
+{%highlight java%}
+Glide.with(this)
+	    .load(url)
+	    .into(mImageView);
+{%endhighlight%}
+
+Or you can simple get a `bitmap` with `Glide`:
+
+{%highlight java%}
+Bitmap bitmap = Glide.with(this)
+			.load(url)
+			.asBitmap()
+			.into(100, 100) //set width and height
+			.get();
+{%endhighlight%}
+
+## Attributes
+Here you can add lots of attributes between `load()` and `into()`.
+
+### placeHolder/error
+
+{%highlight java%}
+.placeHolder(R.mipmap.ic_launcher);		//display this drawable before downloading.
+.error(R.mipmap.ic_launcher);			//display this drawable when error occurs while downloading.
+{%endhighlight%}
+
+### crossFade
+
+{%highlight java%}
+.crossFade(int duration)		//duration from nothing to display your drawable, default value is 300(ms).
+{%endhighlight%}
+
+### thumbnail
+
+{%highlight java%}
+.thumbnail(0.1f)			//to load a low-quality preview before display the full size image.
+{%endhighlight%}
+
+### resize
+
+{%highlight java%}
+.override(100, 100)
+{%endhighlight%}
+
+### position
+
+`.fitCenter()`: the short side of the image will fill its parent's side. *(default)*
+`.centerCrop()`: the long side of the image will fill its parent's side.
+
+<img src="/screenshots/fit-center.png" width="250"/>
+<img src="/screenshots/center-crop.png" width="250"/>
+
+### cache strategy
+
+{%highlight java%}
+.diskCacheStrategy(DiskCacheStrategy.NONE)	//cache nothing
+.diskCacheStrategy(DiskCacheStrategy.RESULT)	//only cache the final image
+.diskCacheStrategy(DiskCacheStrategy.SOURCE)	//only cache the full size image
+.diskCacheStrategy(DiskCacheStrategy.ALL)	//cache images in all size(default)
+{%endhighlight%}
+
+## Plugin
+`Glide` supports many plugins. Here I introduce a libray [glide-transformations](https://github.com/wasabeef/glide-transformations) which focuses on bitmap transforms.
+
+4 examples here:
+
+{%highlight java%}
+.bitmapTransform(new CropSquareTransformation(this))
+.bitmapTransform(new CropCircleTransformation(this))
+.bitmapTransform(new BlurTransformation(this, 5))
+.bitmapTransform(new BlurTransformation(this, 25))
+{%endhighlight%}
+<img src="/screenshots/4-examples.png" width="250"/>
+
+## Source code
+You can check the source code in [GlideActivity.java](https://github.com/Mindjet/NetworkThirdPartyLib/blob/master/app/src/main/java/com/mindjet/networkthirdpartylib/GlideActivity.java) in my another repo.

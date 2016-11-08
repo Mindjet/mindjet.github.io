@@ -1,22 +1,46 @@
-<footer class="site-footer" id="footer">
-    <div class="footer-title">
-        <p>&copy;Copyright 2016, Mindjet Zheng</p>
-    </div>
-    <ul class="footer-contact">
-        <li>
-            <a href="{{site.github_username | prepend: 'https://www.github.com/'}}" target="_blank" title="github"><img class="footer-contact-github" src="assets/icons/icon-github.svg"></a>
-        </li>
-        <li>
-            <a href="{{site.facebook_username | prepend: 'https://www.facebook.com/'}}" target="_blank" title="facebook"><img class="footer-contact-facebook" src="assets/icons/icon-facebook.svg"></a>
-        </li>
-        <li>
-            <a href="{{site.insta_username | prepend: 'https://www.instagram.com/'}}" target="_blank" title="instagram"><img class="footer-contact-instagram" src="assets/icons/icon-insta.svg"></a>
-        </li>
-        <li>
-            <a href="{{site.twitter_username | prepend: 'https://www.twitter.com/'}}" target="_blank" title="twitter"><img class="footer-contact-twitter" src="assets/icons/icon-twitter.svg"></a>
-        </li>
-    </ul>
-    
+<footer class="site-footer">
 
+  <div class="wrapper">
+
+    <h2 class="footer-heading">{{ site.title | escape }}</h2>
+
+    <div class="footer-col-wrapper">
+      <div class="footer-col footer-col-1">
+        <ul class="contact-list">
+          <li>
+            {% if site.author %}
+              {{ site.author | escape }}
+            {% else %}
+              {{ site.title | escape }}
+            {% endif %}
+            </li>
+            {% if site.email %}
+            <li><a href="mailto:{{ site.email }}">{{ site.email }}</a></li>
+            {% endif %}
+        </ul>
+      </div>
+
+      <div class="footer-col footer-col-2">
+        <ul class="social-media-list">
+          {% if site.github_username %}
+          <li>
+            {% include icon-github.html username=site.github_username %}
+          </li>
+          {% endif %}
+
+          {% if site.twitter_username %}
+          <li>
+            {% include icon-twitter.html username=site.twitter_username %}
+          </li>
+          {% endif %}
+        </ul>
+      </div>
+
+      <div class="footer-col footer-col-3">
+        <p>{{ site.description | escape }}</p>
+      </div>
+    </div>
+
+  </div>
 
 </footer>
