@@ -34,7 +34,32 @@ h1, h2, h3, h4, h5, h6,
 p, blockquote, pre,
 ul, ol, dl, figure,
 %vertical-rhythm {
-  margin-bottom: $spacing-unit / 2;
+  margin-bottom: $spacing-unit / 1.2;
+
+  @include media-query($on-laptop) {
+    margin-bottom: $spacing-unit / 2;
+  }
+
+}
+
+/**
+* Override the h2 margin-bottom in .post-list
+*/
+
+.post-list h2{
+  margin-bottom: 0px;
+}
+
+/**
+* Override the h3 margin-bottom in .post-content
+*/
+.post-content h3{
+  margin-bottom:$spacing-unit / 2.5;
+
+  @include media-query($on-laptop) {
+    margin-bottom: $spacing-unit / 3;
+  }
+
 }
 
 
@@ -92,7 +117,7 @@ h1, h2, h3, h4, h5, h6 {
  */
 a {
   color: $brand-color;
-  text-decoration: none;
+  text-decoration: underline;
 
   &:visited {
     color: darken($brand-color, 15%);
@@ -110,11 +135,10 @@ a {
  * Blockquotes
  */
 blockquote {
-  color: $grey-color;
+  color: $grey-color-dark;
+  font-family: "Source Sans Pro"; 
   border-left: 4px solid $grey-color-light;
   padding-left: $spacing-unit / 2;
-  font-size: 18px;
-  letter-spacing: -1px;
   font-style: italic;
 
   > :last-child {
@@ -129,7 +153,8 @@ blockquote {
  */
 pre,
 code {
-  font-size: 15px;
+  font-family: consolas, monospace;
+  font-size: 16px;
   border: 1px solid $grey-color-light;
   border-radius: 3px;
   background-color: #eef;

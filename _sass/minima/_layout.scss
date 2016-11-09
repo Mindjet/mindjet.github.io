@@ -70,7 +70,7 @@
       display: none;
     }
 
-    &:hover .trigger {
+    &:active .trigger {
       display: block;
       padding-bottom: 5px;
     }
@@ -175,7 +175,7 @@
   list-style: none;
 
   > li {
-    margin-bottom: $spacing-unit;
+    margin-bottom: $spacing-unit / 4;
   }
 }
 
@@ -237,4 +237,16 @@
       font-size: 18px;
     }
   }
+
+  p{
+    font-size: 16px;
+    letter-spacing: 0px;
+    line-height: 26px;
+
+    @include media-query($on-laptop) {
+      font-size: 14px;
+    }
+
+  }
+
 }
