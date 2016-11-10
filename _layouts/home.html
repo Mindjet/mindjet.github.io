@@ -1,13 +1,22 @@
 ---
 layout: default
 ---
-
 <div class="home">
-
-  <h1 class="page-heading">&lt;Coding/&gt;</h1>
-  
-  {{ content }}
-
-  <p class="rss-subscribe">subscribe <a href="{{ "/feed.xml" | relative_url }}">via RSS</a></p>
-
+    <!-- <h1 class="page-heading">&lt;Coding/&gt;</h1> -->
+    <div class="home-block">
+        <img class="home-block-icon" src="/assets/icon/icon-android.svg">
+            <p>
+                Coding
+            </p>
+        </img>
+    </div>
+    <div class="home-block">
+        <img class="home-block-icon" src="/assets/icon/icon-camera.svg">
+            <p>
+                Photography
+            </p>
+        </img>
+    </div>
+    {{ content }}
+    <!-- <p class="rss-subscribe">subscribe <a href="{{ "/feed.xml" | relative_url }}">via RSS</a></p> -->
 </div>

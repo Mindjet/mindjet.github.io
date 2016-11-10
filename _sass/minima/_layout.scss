@@ -70,7 +70,7 @@
       display: none;
     }
 
-    &:active .trigger {
+    &:hover .trigger {
       display: block;
       padding-bottom: 5px;
     }

@@ -46,8 +46,13 @@ ul, ol, dl, figure,
 * Override the h2 margin-bottom in .post-list
 */
 
-.post-list h2{
+.post-list h2 {
   margin-bottom: 0px;
+}
+
+.home-block p{
+  color: #000;
+  margin: 10px 0 0 0;
 }
 
 /**
@@ -71,6 +76,43 @@ img {
   max-width: 100%;
   vertical-align: middle;
 }
+
+
+/**
+* Control the icons in home.html
+*/
+.home{
+  text-align: center;
+
+  .home-block{
+    text-align: center;
+    padding: 20px;
+    display: inline-block;
+    background-color: #f4f5f7;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin: 10px;
+    
+    .home-block-icon {
+        height: 100px;
+        transition: .4s ease-out;
+
+        &:hover{
+          height: 130px;
+          transition: .4s ease-out;
+        }
+
+    }
+
+    >p{
+      margin-top: 10px;
+    }
+
+  }
+
+}
+
+
 
 
 
