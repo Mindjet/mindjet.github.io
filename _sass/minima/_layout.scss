@@ -111,7 +111,7 @@
 .footer-col-wrapper {
   font-size: 15px;
   color: $grey-color;
-  margin-left: -$spacing-unit / 2;
+  /*margin-left: -$spacing-unit / 2;*/
   @extend %clearfix;
 }
 
@@ -175,8 +175,9 @@
   list-style: none;
 
   > li {
-    margin-bottom: $spacing-unit / 4;
+    margin-bottom: $spacing-unit/4;
   }
+
 }
 
 .post-meta {

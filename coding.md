@@ -1,8 +1,8 @@
 ---
 layout: page
-title: Coding
+title: Way 2 Android
+permalink: /coding/
 ---
-
 
 <ul class="post-list">
   {% for post in site.posts %}
