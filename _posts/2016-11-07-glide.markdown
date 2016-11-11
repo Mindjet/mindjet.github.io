@@ -2,7 +2,7 @@
 layout: post
 title: Glide
 date:  2016-11-07 22:41:05 +0800
-categories: android
+categories: [android, imageloader]
 ---
 
 ## Introduction
