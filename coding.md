@@ -4,7 +4,7 @@ title: Way 2 Android
 permalink: /coding/
 ---
 
-<ul class="post-list">
+<!-- <ul class="post-list">
   {% for post in site.posts %}
     <li>
       <span class="post-meta">{{ post.date | date: "%b %-d, %Y" }}</span>
@@ -14,5 +14,5 @@ permalink: /coding/
       </h2>
     </li>
   {% endfor %}
-</ul>
+</ul> -->
 	

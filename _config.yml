@@ -32,6 +32,10 @@ kramdown:
   syntax_highlighter: rouge
 port: 8090
 
+paginate: 1
+paginate_path: "page:num"
+gems: [jekyll-paginate]
+
 theme: minima
 gems:
   - jekyll-feed
