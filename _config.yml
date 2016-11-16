@@ -13,6 +13,8 @@
 # you will see them accessed via {{ site.title }}, {{ site.email }}, and so on.
 # You can create any custom variable you would like, and they will be accessible
 # in the templates via {{ site.myvariable }}.
+safe: false
+
 title: Mindjet's Blog
 email: pearl920@outlook.com
 description: > # this means to ignore newlines until "baseurl:"
@@ -32,13 +34,10 @@ kramdown:
   syntax_highlighter: rouge
 port: 8090
 
-paginate: 1
-paginate_path: "page:num"
-gems: [jekyll-paginate]
-
 theme: minima
 gems:
   - jekyll-feed
+  
 exclude:
   - Gemfile
   - Gemfile.lock

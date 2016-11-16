@@ -9,7 +9,7 @@ ruby RUBY_VERSION
 #
 # This will help ensure the proper Jekyll version is running.
 # Happy Jekylling!
-gem "jekyll", "3.3.0"
+gem "jekyll", "3.2.1"
 
 # This is the default theme for new Jekyll sites. You may change this to anything you like.
 gem "minima", "~> 2.0"
@@ -19,7 +19,6 @@ gem "kramdown", "1.12.0"
 gem "rouge", "1.11.1"
 gem "rdiscount", "2.2.0.1"
 
-
 # gem "jekyll-paginate", "1.1.0"
 
 # If you want to use GitHub Pages, remove the "gem "jekyll"" above and
@@ -27,6 +26,7 @@ gem "rdiscount", "2.2.0.1"
 # gem "github-pages", group: :jekyll_plugins
 
 # If you have any plugins, put them here!
+
 group :jekyll_plugins do
    gem "jekyll-feed", "~> 0.6"
    gem "jekyll-paginate", "1.1.0"

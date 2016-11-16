@@ -2,7 +2,7 @@
 layout: post
 title: Data-binding-3
 date:  2016-11-03 16:20:05 +0800
-catagories: [android, databinding]
+categories: [coding, android, databinding]
 ---
 
 ## Preface
