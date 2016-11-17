@@ -173,10 +173,17 @@
 .post-list {
   margin-left: 0;
   list-style: none;
+  overflow: hidden;
 
   > li {
     margin-bottom: $spacing-unit/4;
   }
+
+}
+
+.post-direction{
+  
+  
 
 }
 
@@ -186,8 +193,32 @@
 }
 
 .post-link {
+  float: left;
   display: block;
-  font-size: 24px;
+  border: 2px solid #333;
+  border-radius: 40px;
+  margin: 0px 8px 15px 8px;
+  background-color: #fff;
+  padding: 20px;
+  text-decoration: none;
+ /* box-shadow: 1px 1px 5px #888888;*/
+
+  .post-title{
+    padding: 5px 0;
+    font-size: 20px;
+    font-weight: normal;
+  }
+
+  &:hover{
+    /*box-shadow: 1px 1px 10px #888888;*/
+    background-color: #333;
+    color: white;
+
+    .post-meta{
+      color: white;
+    }
+  }
+
 }
 
 

@@ -6,7 +6,7 @@ categories: [coding, android, databinding]
 ---
 
 ## 回顾
-在[data-binding-1](data-binding.md)中，只是实现了`xml`文件对`JavaBean`的读取，并没有体现`MVVM`设计模式的所有内容。
+在`data-binding-1`中，只是实现了`xml`文件对`JavaBean`的读取，并没有体现`MVVM`设计模式的所有内容。
 
 `Data-binding`最有意思的地方是，当改变`JavaBean`数据时，修改能够实时地体现在 UI 上。而我们这次要做的就是这件事。
 

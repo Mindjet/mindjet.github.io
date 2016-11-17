@@ -12,6 +12,22 @@ layout: default
     {{ content }}
   </div>
 
+  <div class="post-previous post-direction">
+    {% if page.previous.url == null %}
+      <p>< No previous post</p>
+    {% else %}
+      <a href="{{page.previous.url}}">< Previous post</a>
+    {% endif %}
+  </div>
+
+  <div class="post-next post-direction">
+    {% if page.next.url == null %}
+      <p>No next post ></p>
+    {% else %}
+      <a href="{{page.next.url}}">Next post ></a>
+    {% endif %}
+  </div>
+
   {% if site.disqus.shortname %}
     {% include disqus_comments.html %}
   {% endif %}

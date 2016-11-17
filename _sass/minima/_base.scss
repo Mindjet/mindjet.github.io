@@ -196,6 +196,22 @@ a {
   }
 }
 
+/**
+* Override a tags of post-link
+*/
+.post-link{
+  color: #A9A9A9;
+  
+  &:hover{
+    text-decoration: none;
+    color: darken($grey-color, 95%);
+  }
+
+  &:visited{
+    color: darken($grey-color, 95%);
+  }
+}
+
 
 
 /**
