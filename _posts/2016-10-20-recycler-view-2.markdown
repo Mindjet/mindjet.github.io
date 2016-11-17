@@ -97,6 +97,7 @@ public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
 
 
 ## 瀑布流
+
 ### 1. 效果
 <img src="/screenshots/recycler-view-screen-4.png" width="250"/>
 
