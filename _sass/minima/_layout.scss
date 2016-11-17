@@ -181,11 +181,21 @@
 
 }
 
-.post-direction{
-  
+.post-redirect{
+  text-align: center;
+  margin-top: 20px;
+}
+
+.post-direction, .post-end{
+    display: inline-block;
+    border: 2px solid #333;
+    border-radius: 30px;
+    padding: 10px;
+    background-color: white;
+    margin: 15px 40px;
+}
   
 
-}
 
 .post-meta {
   font-size: $small-font-size;
@@ -196,11 +206,10 @@
   float: left;
   display: block;
   border: 2px solid #333;
-  border-radius: 40px;
+  border-radius: 35px;
   margin: 0px 8px 15px 8px;
   background-color: #fff;
   padding: 20px;
-  text-decoration: none;
  /* box-shadow: 1px 1px 5px #888888;*/
 
   .post-title{
@@ -217,6 +226,7 @@
     .post-meta{
       color: white;
     }
+
   }
 
 }
