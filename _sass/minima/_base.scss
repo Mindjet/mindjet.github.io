@@ -34,10 +34,10 @@ h1, h2, h3, h4, h5, h6,
 p, blockquote, pre,
 ul, ol, dl, figure,
 %vertical-rhythm {
-  margin-bottom: $spacing-unit / 1.2;
+  margin-bottom: $spacing-unit / 1.5;
 
   @include media-query($on-laptop) {
-    margin-bottom: $spacing-unit / 2;
+    margin-bottom: $spacing-unit / 2.2;
   }
 
 }
@@ -54,6 +54,14 @@ ul, ol, dl, figure,
   color: #000;
   margin: 10px 0 0 0;
 }
+
+.home-contact{
+  p{
+    margin: 0;
+    padding: 20px 0 0 0;
+}
+
+} 
 
 /**
 * Override the h3 margin-bottom in .post-content
@@ -83,62 +91,66 @@ img {
 */
 .home{
   text-align: center;
-}
 
-.home-block{
-  text-align: center;
-  padding: 20px;
-  display: inline-block;
-  background-color: #f4f5f7;
-  border: 1px solid #ccc;
-  border-radius: 45px;
-  margin: 10px;
-  cursor: pointer;
-  
-  .home-block-icon {
-      height: 100px;
-      transition: .4s ease-out;
-
-      &:hover{
-        height: 130px;
+  .home-block{
+    padding: 20px;
+    display: inline-block;
+    background-color: #fff;
+    border: 2px solid #202020;
+    border-radius: 45px;
+    margin: 10px;
+    
+    img {
+        height: 100px;
         transition: .4s ease-out;
-      }
+
+        &:hover{
+          height: 130px;
+          transition: .4s ease-out;
+        }
+
+    }
+
+    >p{
+      margin-top: 10px;
+    }
 
   }
-
-  >p{
-    margin-top: 10px;
-  }
-
 }
+
 
 .home-contact{
   text-align: center;
 
-  .home-block{
-    text-align: center;
-    padding: 20px;
+  >ul{
+    overflow: hidden;
+  }
+
+  li{
+    border: 2px solid #333;
     display: inline-block;
-    background-color: #f4f5f7;
-    border-radius: 20px;
+    border-radius: 25px;
     margin: 10px;
-    cursor: pointer;
-    box-shadow: 1px 1px 3px #888888;
-    
-    .home-block-icon {
-        height: 80px;
+  }
+
+  a{
+    display: inline-block;
+    padding: 20px;
+
+    img{
+      height: 70px;
     }
 
     &:hover{
-      box-shadow: 1px 1px 8px #666;
+      text-decoration: none;
     }
+  }
 
+  .contact-way{
+    color: #000;
   }
 
 }
-
-
-
 
 
 /**
@@ -225,6 +237,20 @@ a {
     color: white;
     background-color: #333;
   }
+}
+
+.home{
+  a{
+    &:hover{
+      text-decoration: none;
+    }
+  }
+}
+
+#uyan_frame{
+  margin-top: 40px;
+  padding-top: 30px;
+  border-top: 1px solid #999;
 }
 
 

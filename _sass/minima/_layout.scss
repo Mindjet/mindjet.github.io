@@ -205,7 +205,7 @@
 .post-link {
   float: left;
   display: block;
-  border: 2px solid #333;
+  border: 2px solid #202020;
   border-radius: 35px;
   margin: 0px 8px 15px 8px;
   background-color: #fff;
@@ -220,7 +220,7 @@
 
   &:hover{
     /*box-shadow: 1px 1px 10px #888888;*/
-    background-color: #333;
+    background-color: #202020;
     color: white;
 
     .post-meta{
