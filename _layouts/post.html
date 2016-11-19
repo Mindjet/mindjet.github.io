@@ -16,18 +16,18 @@ layout: default
   <!-- post redirect -->
   <div class="post-redirect">
 
-    {% if page.previous.url == null %}
-      <span class="post-end">< No earlier post</span>
+    {% if page.next.url == null %}
+      <span class="post-end">< No later post</span>
     {% else %}
-      <a class="post-previous post-direction" href="{{page.previous.url}}">< Previous post</a>
+      <a class="post-next post-direction" href="{{page.next.url}}">< Later post</a>
     {% endif %}
 
-    {% if page.next.url == null %}
-      <span class="post-end">No later post ></span>
+    {% if page.previous.url == null %}
+      <span class="post-end">No earlier post ></span>
     {% else %}
-      <a class="post-next post-direction" href="{{page.next.url}}">Next post ></a>
+      <a class="post-previous post-direction" href="{{page.previous.url}}">Earlier post ></a>
     {% endif %}
-   
+
   </div> 
 
   <!-- UY BEGIN -->
