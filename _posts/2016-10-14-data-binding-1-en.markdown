@@ -3,6 +3,7 @@ layout: post
 title: Data-binding-1-en
 date: 2016-10-14 16:20:05 +0800
 categories: [coding, android, databinding]
+permalink: /:categories/:title
 ---
 
 [切换到中文版](data-binding-1-cn.html)
@@ -181,3 +182,6 @@ public class MyOnclickListener implements View.OnClickListener{
 }
 {% endhighlight %}
 Attention, the modifier must be `public`, because the `Binding` class will directly use this class. At the meantime, you need to instantiate `MyOnclickListener` and add a `getter` for it.
+
+
+[Next post about data-binding(updating UI in real time)](data-binding-2.html)

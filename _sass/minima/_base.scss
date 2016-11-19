@@ -173,6 +173,10 @@ ul, ol {
   margin-left: $spacing-unit;
 }
 
+.home ul, .home-contact ul{
+  margin-left: 0;
+}
+
 li {
   > ul,
   > ol {

@@ -3,6 +3,7 @@ layout: post
 title: Data-binding-3
 date:  2016-11-03 16:20:05 +0800
 categories: [coding, android, databinding]
+permalink: /:categories/:title
 ---
 
 ## Preface
@@ -81,4 +82,4 @@ Finally invoke this method in the widget:
 Bingo~! Run your app and see what happen.
 
 
-
+You can check my posts [DataBinding-1](data-binding-1-en.html),  [DataBinding-2](data-binding-2.html) for more about databinding.

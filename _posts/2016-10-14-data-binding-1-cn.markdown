@@ -3,6 +3,7 @@ layout: post
 title: Data-binding-1-cn
 date: 2016-10-14 16:20:05 +0800
 categories: [coding, android, databinding]
+permalink: /:categories/:title
 ---
 
 [Switch to English version](data-binding-1-en.html)
@@ -178,4 +179,7 @@ public class MyOnclickListener implements View.OnClickListener{
 {% endhighlight %}
 
 　　注意，监听器类的访问权限须为`public`，因为在`Binding`类中会直接引用该类。同时需要实例化出该`onclickListener`并且编写`getOnclickListener`方法。
+
+
+[下一篇data-binding的文章(关于UI实时变化)](data-binding-2.html)
 

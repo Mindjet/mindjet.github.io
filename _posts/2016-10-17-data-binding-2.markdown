@@ -3,10 +3,11 @@ layout: post
 title: Data-binding-2
 date: 2016-10-17 16:20:05 +0800
 categories: [coding, android, databinding]
+permalink: /:categories/:title
 ---
 
 ## 回顾
-在`data-binding-1`中，只是实现了`xml`文件对`JavaBean`的读取，并没有体现`MVVM`设计模式的所有内容。
+在[data-binding-1](data-binding-1-cn.html)中，只是实现了`xml`文件对`JavaBean`的读取，并没有体现`MVVM`设计模式的所有内容。
 
 `Data-binding`最有意思的地方是，当改变`JavaBean`数据时，修改能够实时地体现在 UI 上。而我们这次要做的就是这件事。
 
@@ -16,23 +17,17 @@ categories: [coding, android, databinding]
 
 {% highlight Java %}
 public class User {
-
     private String name;
     private String age;
 
     public User(String age, String name) {
-
         this.age = age;
         this.name = name;
     }
-
     public String getName() {
-
         return name;
     }
-
     public String getAge() {
-
         return age;
     }
 }
@@ -47,7 +42,6 @@ public class User {
 
 {% highlight Java %}
 public class User extends BaseObservable {
-
     public ObservableField<String> name = new ObservableField<>();
     public ObservableField<Integer> color = new ObservableField<>();
     public ObservableField<String> age = new ObservableField<>();
@@ -57,7 +51,6 @@ public class User extends BaseObservable {
         this.age.set(age);
         this.color.set(color);
     }
-
 }
 {% endhighlight %}
 可以看见，代码极其简洁，不用设置`setter/getter`。需要注意的是，需要为每个变量**实例化**。成员变量以下面的方式赋值和获取：
