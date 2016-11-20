@@ -17,12 +17,12 @@ safe: false
 
 title: Mindjet's Blog
 email: pearl920@outlook.com
-description: > # this means to ignore newlines until "baseurl:"
+description: # this means to ignore newlines until "baseurl:"
   Android developer based in Guangzhou, China. Majored in Microelectronics in Sun Yat-sen University.
   This website is polished by Minima, powered by Jekyll, and proudly hosted by Github.
 baseurl: "" # the subpath of your site, e.g. /blog
 url: "" # the base hostname & protocol for your site, e.g. http://example.com
-twitter_username: jekyllrb
+twitter_username: android_mindjet
 github_username:  Mindjet
 
 # Build settings
