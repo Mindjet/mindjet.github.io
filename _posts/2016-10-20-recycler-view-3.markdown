@@ -1,6 +1,6 @@
 ---
 layout: post
-title: RecyclerView-3 (listener)
+title: RecyclerView-3 (监听器)
 date: 2016-10-20 12:20:05 +0800
 categories: [coding, android, recyclerview]
 permalink: /:categories/:title

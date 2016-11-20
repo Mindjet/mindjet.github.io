@@ -1,6 +1,6 @@
 ---
 layout: post
-title: RecyclerView-2 (multi-item and waterfall) 
+title: RecyclerView-2 (多类型与瀑布流) 
 date: 2016-10-20 10:20:05 +0800
 categories: [coding, android, recyclerview]
 permalink: /:categories/:title

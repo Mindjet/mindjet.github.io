@@ -1,6 +1,6 @@
 ---
 layout: post
-title: RecyclerView-4 (drag and swipe)
+title: RecyclerView-4 (拖拽与滑动)
 date: 2016-10-20 16:20:05 +0800
 categories: [coding, android, recyclerview]
 permalink: /:categories/:title

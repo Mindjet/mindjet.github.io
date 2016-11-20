@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Data-binding-1-en
+title: Data-binding-1
 date: 2016-10-14 16:20:05 +0800
 categories: [coding, android, databinding]
 permalink: /:categories/:title

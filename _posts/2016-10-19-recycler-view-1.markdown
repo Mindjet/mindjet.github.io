@@ -1,6 +1,6 @@
 ---
 layout: post
-title: RecyclerView-1 (introduction and simple sample)
+title: RecyclerView-1 (简介与简单使用)
 date: 2016-10-19 16:20:05 +0800
 categories: [coding, android, recyclerview]
 permalink: /:categories/:title
