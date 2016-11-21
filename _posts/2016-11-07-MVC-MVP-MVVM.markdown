@@ -4,6 +4,7 @@ title: MVC/MVP/MVVM
 date: 2016-11-07 16:20:05 +0800
 categories: [coding, android, designframework]
 permalink: /:categories/:title
+index: 8
 ---
 
 ## MVC

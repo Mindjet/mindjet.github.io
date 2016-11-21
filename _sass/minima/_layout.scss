@@ -238,6 +238,7 @@
  */
 .post-header {
   margin-bottom: $spacing-unit;
+  overflow: hidden;
 }
 
 .post-title {
@@ -250,6 +251,21 @@
     font-size: 36px;
   }
 }
+
+.post-category{
+  float: left;
+  font-family: "Source Sans Pro";
+  border: 1px solid #333;
+  margin: 5px 8px;
+  padding: 0 5px;
+  border-radius: 10px;
+
+  @include media-query($on-laptop) {
+    font-size: 13px;
+  }
+
+}
+
 
 .post-content {
   margin-bottom: $spacing-unit;

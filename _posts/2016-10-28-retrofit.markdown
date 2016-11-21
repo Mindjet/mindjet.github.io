@@ -4,6 +4,7 @@ title: Retrofit 2.0
 date: 2016-10-28 16:20:05 +0800
 categories: [coding, android, httpclient]
 permalink: /:categories/:title
+index: 4
 ---
 
 ## Introduction

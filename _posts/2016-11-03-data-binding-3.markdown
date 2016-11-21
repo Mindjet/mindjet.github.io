@@ -4,6 +4,7 @@ title: Data-binding-3
 date:  2016-11-03 16:20:05 +0800
 categories: [coding, android, databinding]
 permalink: /:categories/:title
+index: 7
 ---
 
 ## Preface

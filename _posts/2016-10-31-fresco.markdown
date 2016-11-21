@@ -4,6 +4,7 @@ title: Fresco
 date: 2016-10-31 16:20:05 +0800
 categories: [coding, android, imageloader]
 permalink: /:categories/:title
+index: 6
 ---
 
 ## Introduction

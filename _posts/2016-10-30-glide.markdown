@@ -4,6 +4,7 @@ title: Glide
 date:  2016-10-30 22:41:05 +0800
 categories: [coding, android, imageloader]
 permalink: /:categories/:title
+index: 5
 ---
 
 ## Introduction

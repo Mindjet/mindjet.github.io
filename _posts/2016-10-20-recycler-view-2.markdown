@@ -4,6 +4,7 @@ title: RecyclerView-2 (多类型与瀑布流)
 date: 2016-10-20 10:20:05 +0800
 categories: [coding, android, recyclerview]
 permalink: /:categories/:title
+index: 8
 ---
 
 对于`RecyclerView`更加基础的理解，请看[RecyclerView-1](recycler-view-1.html)。

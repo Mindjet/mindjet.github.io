@@ -4,6 +4,7 @@ title: RecyclerView-4 (拖拽与滑动)
 date: 2016-10-20 16:20:05 +0800
 categories: [coding, android, recyclerview]
 permalink: /:categories/:title
+index: 1
 ---
 
 更多关于`RecyclerView`：  

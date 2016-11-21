@@ -4,6 +4,7 @@ title: RecyclerView-3 (监听器)
 date: 2016-10-20 12:20:05 +0800
 categories: [coding, android, recyclerview]
 permalink: /:categories/:title
+index: 9
 ---
 
 对`RecyclerView`更多的内容，请看[RecyclerView-1](recycler-view-1.html)和[RecyclerView-2](recycler-view-2.html)。

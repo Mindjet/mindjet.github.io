@@ -4,6 +4,7 @@ title: Git多账号的配置（基于macOS）
 date: 2016-10-17 16:20:05 +0800
 categories: [coding, git, deploy]
 permalink: /:categories/:title
+index: 5
 ---
 
 ## 为不同账户生成不同的SSH KEY

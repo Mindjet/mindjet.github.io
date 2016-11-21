@@ -4,6 +4,7 @@ title: Data-binding-2
 date: 2016-10-17 16:20:05 +0800
 categories: [coding, android, databinding]
 permalink: /:categories/:title
+index: 4
 ---
 
 ## 回顾

@@ -4,6 +4,7 @@ title: PercentLayout
 date: 2016-10-14 11:20:05 +0800
 categories: [coding, android, percentlayout]
 permalink: /:categories/:title
+index: 3
 ---
 
 ## 简介  

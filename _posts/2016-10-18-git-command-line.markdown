@@ -4,6 +4,7 @@ title: Git基本命令行
 date: 2016-10-18 16:20:05 +0800
 categories: [coding, git, commandline]
 permalink: /:categories/:title
+index: 6
 ---
 
 ## 远程操作

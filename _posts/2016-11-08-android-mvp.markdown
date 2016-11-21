@@ -4,6 +4,7 @@ title: Android MVP
 date: 2016-11-08 16:20:05 +0800
 categories: [coding, android, designframework]
 permalink: /:categories/:title
+index: 9
 ---
 
 ## Preface

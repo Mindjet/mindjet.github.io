@@ -4,6 +4,7 @@ title: Data-binding-1(中文)
 date: 2016-10-14 16:20:05 +0800
 categories: [coding, android, databinding]
 permalink: /:categories/:title
+index: 1
 ---
 
 [Switch to English version](data-binding-1-en.html)
