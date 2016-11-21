@@ -1,0 +1,15 @@
+---
+layout: post
+title: RxJava-1
+date: 2016-11-21 16:20:05 +0800
+categories: [coding, android, rxjava]
+permalink: /:categories/:title
+---
+
+## Introduce
+
+
+## Observable
+
+
+## Observer/Subscriber
