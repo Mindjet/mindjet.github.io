@@ -2,7 +2,7 @@
 layout: post
 title: PercentLayout
 date: 2016-10-14 11:20:05 +0800
-categories: [coding, android, percentlayout]
+categories: [coding, android, ui]
 permalink: /:categories/:title
 index: 3
 ---
