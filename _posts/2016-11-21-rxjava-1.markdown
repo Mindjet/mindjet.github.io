@@ -1,16 +1,79 @@
 ---
 layout: post
 title: RxJava-1
-date: 2016-11-21 16:20:05 +0800
+date: 2016-12-22 14:52:05 +0800
 categories: [coding, android, rxjava]
 permalink: /:categories/:title
-index: 2
+index: 3
 ---
 
-## Introduce
+## Introduction
 
+>RxJava – Reactive Extensions for the JVM – a library for composing asynchronous and event-based programs using observable sequences for the Java VM.
+
+现在可以看到很多开源库是以 `ReactiveX` 开头的， 一般简写为 `Rx`， 比如 `RxJava`， `RxAndroid` 等等。`RxJava` 应该算是里面应用较为广泛且完善程度较高的。
+
+`Rx` 库的特点是：观察者模式、异步和流式结构。
+
+[RxJava 官方仓库](https://github.com/ReactiveX/RxJava)
+
+## Overview
+
+先对 RxJava 的机制做一个粗略的概括，方便下面逐步展开。
+
+把 RxJava 的调用链看成一个句子，`Observable` 相当于**主语**，`Observer` 相当于**宾语**，而 `subscribe()` 方法相当于**谓语**，把主语和宾语连接起来。当然在这个连接作用之前、之后和中间都可以做一些其他的处理，例如 `map` 操作符等，不过在这里先把这三者的关系理清即可。
 
 ## Observable
 
+`Observable`，**被观察者**，是 RxJava 机制中的事件的触发源。
 
-## Observer/Subscriber
+新建一个 Observable 有以下几种方式：
+
+### create
+
+{% highlight Java %}
+Observable<String> observable = Observable.create(new ObservableOnSubscribe<String>() {
+    @Override
+    public void subscribe(ObservableEmitter<String> e) throws Exception {
+        e.onNext("Android");
+        e.onNext("iOS");
+        e.onComplete();
+    }
+});
+{% endhighlight %}
+
+一个 `ObservableOnSubscribe<T>` （接口）作为参数传入，在其 `subscribe` 方法中，依次调用了两次 `onNext()` 和一次 `onComplete()` 方法。其实这里的 subscribe 方法相当于定义一个计划表，规定了在**订阅之后** `Observer` 要干些什么以及干的顺序是怎么样的。
+
+### just
+
+{% highlight Java %}
+Observable<String> observable1 = Observable.just("Android", "iOS");
+{% endhighlight %}
+
+效果跟上一个例子完全一样。
+
+### fromXXX
+
+{% highlight Java %}
+String[] systems = {"Android", "iOS"};
+Observable<String> observable2 = Observable.fromArray(systems);
+{% endhighlight %}
+
+效果与上面两个例子一样。
+
+其实只要泛型指定正确，可以用任何类型的 Array，还可以 `fromIterable()` 等。
+
+## Observer
+
+`Observer`，**观察者**，一般是事件流的终点。
+
+可以以以下方式新建一个 Observer（Observer是一个接口）：
+
+{% highlight Java %}
+
+{% endhighlight %}
+
+
+## subscribe
+
+
