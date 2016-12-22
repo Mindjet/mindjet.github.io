@@ -14,7 +14,7 @@ index: 8
 
 Take developing Android as an example. The `layout.xml` represents the `View`, the Java Bean stands for the `Model`, and `Activity` plays as `Controller` as it can `setOnClickListener` to the `View`, and change the `Model` directly.
 
-Here comes 2 problem, however. One is that as `View`, `layout.xml` can hardly control itself, like it can't change its background. The other is that while `View` cannot self-control, the `Activity` plays role as `View` and `Controller`, which makes it very heavy and inflexible.
+Here come 2 problems, however. One is that as `View`, `layout.xml` can hardly control itself, like it can't change its background. The other is that while `View` cannot self-control, the `Activity` plays role as `View` and `Controller`, which makes it very heavy and inflexible.
 
 There is another deadly problem. `View` and `Model` are both visible to each other and are coupled, which makes it hard to develop, test, and maintain.
 

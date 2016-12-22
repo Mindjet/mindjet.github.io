@@ -70,10 +70,74 @@ Observable<String> observable2 = Observable.fromArray(systems);
 可以以以下方式新建一个 Observer（Observer是一个接口）：
 
 {% highlight Java %}
+Observer<String> observer = new Observer<String>() {
+    @Override
+    public void onSubscribe(Disposable d) {
+        System.out.println("OBSERVER = ON SUBSCRIBE");
+    }
 
+    @Override
+    public void onNext(String s) {
+        System.out.println("OBSERVER = " + s);
+    }
+
+    @Override
+    public void onError(Throwable e) {
+
+    }
+
+    @Override
+    public void onComplete() {
+        System.out.println("OBSERVER = ON COMPLETE");
+    }
+};
 {% endhighlight %}
 
+对于 Observer 而言，是按 `onSubscribe->onNext->onComplete/onError` 的顺序执行的（onComplete 和 onError 只会执行其中之一）。在 `onSubscribe` 方法中，参数 `Disposable` 运行随时打断这个执行链。
 
 ## subscribe
 
+上面说到，通过 `Observable.subscribe(observer)` 方法即可把观察者和被观察者关系起来，即观察者去订阅被观察者。
+
+乍一看，这个语句似乎变成了被观察者去订阅观察者了，确实如此，但这是为了保证 `Observable` 的链式调用。
+
+这样写的话我们可以：
+
+{% highlight Java %}
+Observable.create(xxx)
+	.map()
+	...
+	.subscribe(observer);
+{% endhighlight %}
+
+而不是：
+
+{% highlight Java %}
+Observable observable = Observable.create(xxx)
+				.map()
+				...;
+observer.subscribe(observable);
+{% endhighlight %}
+
+另外，RxJava 允许订阅非完整的 Observer。比如，你只关注 `onNext` 中做了什么，而不需要 `onComplete/onError` 等方法，这个时候这个特点就有用处了，不用去定义一个完整的 Observer。
+
+`Observable.subscribe()` 允许的参数类型如下：
+
+{% highlight Java %}
+Observable.subscribe();
+Observable.subscribe(Consumer<T> onNext);
+Observable.subscribe(Consumer<T> onNext, Consumer<Throwable> onError);
+Observable.subscribe(Consumer<T> onNext, Consumer<Throwable> onError, Action onComplete);
+{% endhighlight %}
+
+需要对 Consumer 和 Action 作一下解释。
+
+它们都是 RxJava 定义的接口，其中前者有一个回调方法 `accept(T param)`，后者有一个回调方法 `run()`，区别就在于参数的个数不同。Consumer 有 1 个参数，Action 没有参数，还有一个 BiConsumer 有 2 个参数。
+
+>注意，由于 RxJava2.0 对 API 作了修改，Consumer 对应 1.0 的 Action1，Action 对应 Actiion0，BiConsumer 对应 Action2。
+
+
+下一篇将介绍 RxJava 的变换操作符。
+
+*参考文献：[给 Android 开发者的 RxJava 详解](https://gank.io/post/560e15be2dca930e00da1083)*
 
