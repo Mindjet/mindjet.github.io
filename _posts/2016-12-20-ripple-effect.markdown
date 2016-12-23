@@ -51,6 +51,7 @@ index: 2
 
 ### 具体效果
 
+<img src="/screenshots/simple-ripple-effect.gif"/>
 
 
 ## 进阶的 Ripple Effect
@@ -109,4 +110,6 @@ index: 2
 另外，使用简单的 Ripple Effect 时，`android:elevation` 无法生效，而是用进阶的 Ripple Effect 则可以。
 
 ### 具体效果
+
+<img src="/screenshots/advanced-ripple-effect.gif"/>
 
