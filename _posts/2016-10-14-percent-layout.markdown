@@ -15,9 +15,9 @@ index: 3
 
 通过以下语句导入：
 
-{% highlight Gradle %}
+```groovy
 compile 'com.zhy:percent-support-extends:1.1.1'
-{% endhighlight %}
+```
 
 ## 使用
  - 最外层需要用 percentLayout 嵌套，内层的`percentLayout`才能生效。

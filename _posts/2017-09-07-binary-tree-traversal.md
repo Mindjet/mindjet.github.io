@@ -13,8 +13,7 @@ index: 2
 
 另外，为保证先保存起来的节点先被访问到，我们需要**队列**这样的数据结构。
 
-{% highlight Java %}
-
+```java
 //例如我们有一下这么一棵二叉树
 //		1
 //     / \
@@ -46,4 +45,4 @@ public List<Double> travesalBFS(TreeNode root) {
         }
     }
 }
-{% endhighlight %}
+```

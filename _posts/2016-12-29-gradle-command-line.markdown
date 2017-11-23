@@ -11,8 +11,8 @@ index: 6
 
 在 Android Studio 的 `Terminal` 工具中输入：
 
-{% highlight shell %}
+```bash
 ./gradlew build -profile
-{% endhighlight %}
+```
 
 可以输出 build 的日志，日志中详细描述了 build 过程中各个 module 耗时以及各个 Task 耗时等。

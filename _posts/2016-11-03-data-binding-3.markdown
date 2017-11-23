@@ -16,13 +16,13 @@ The answer is YES, `data-binding` can do it!
 
 When we use `Glide` to download an image from network and apply it to an `ImageView`, the code is usually like this:
 
-{% highlight Java %}
+```java
 ImageView imageView = (ImageView)findViewById(R.id.iv_xxx);
 Glide.with(getActivity())
         .load(mMovieInfoList.get(position).url.large)
         .thumbnail(0.1f)
         .into(imageView);
-{% endhighlight %}
+```
 
 I can't use `data-binding` above, because it makes me confused that if I use `data-binding`, there will be no `ImageView`, and there will be nothing I can pass to the method `Glide.xxx.into()`.
 
@@ -36,14 +36,14 @@ The sentence means we can attach method to the view.
 
 Here is an example from [developer.android.com](https://developer.android.com/index.html):
 
-{% highlight Java %}
+```java
 @BindingAdapter("android:bufferType")
  public static void setBufferType(TextView view, TextView.BufferType bufferType) {
      view.setText(view.getText(), bufferType);
  }
  
 //When android:bufferType is used on a TextView, the method setBufferType is called.
-{% endhighlight %}
+```
 
 *You can check the [official document](https://developer.android.com/reference/android/databinding/BindingAdapter.html) to learn more about `BindingAdapter`.*
 
@@ -58,7 +58,7 @@ Then you can do whatever you want in the method, like here, I download a photo f
 
 Technically speaking, the first argument must be a View or its subclass.
 
-{% highlight Java %}
+```java
 @BindingAdapter("glide:showImage")
 public static void setImageByGlide(ImageView view, String imgUrl) {
 
@@ -68,17 +68,17 @@ public static void setImageByGlide(ImageView view, String imgUrl) {
             .into(view);
 
 }
-{% endhighlight %}
+```
 
 Finally invoke this method in the widget:
 
-{% highlight XML %}
+```xml
 <ImageView
     android:id="@+id/iv_fullscreen"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     glide:showImage="@{imgUrl}"/>
-{% endhighlight %}
+```
 
 Bingo~! Run your app and see what happen.
 

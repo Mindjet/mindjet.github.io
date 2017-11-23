@@ -17,17 +17,17 @@ index: 5
 
 废话不多说，我们此处假设有两个不同的账号，先分别为其生成独自的 SSH KEY。
 
-{% highlight shell %}
-第一个账户：
+```shell
+# 第一个账户：
 ssh-keygen -t rsa -C "xxxxxxx@gmail.com"
-{% endhighlight %}
+```
 　　执行之后会要求输入 key 名，对于第一个 key 我们只要使用默认的名字即可，即`id_rsa`输入密码，只要一路回车即可，使用密码的话以后提交太麻烦。  
 　　完成之后可以在`~/.ssh/`目录下找到`id_rsa.pub`和`id_rsa`两个文件，前者为公钥，后者为密钥。
 
-{% highlight shell %}
-第二个账户：
+```shell
+# 第二个账户：
 ssh-keygen -t rsa -C "xxxxxxx@outlook.com"
-{% endhighlight %}
+```
 　　之后会要求输入 key 的名字，为了区别第一个用户，我们把这个 key 命名为`id_rsa_sec`，之后便可以一路回车。
 
 　　一顿操作下来之后，我们可以在`~/.ssh/`目录下找到`id_rsa.pub`, `id_rsa`, `id_rsa_sec.pub`和`id_rsa_sec`四个文件。
@@ -35,22 +35,22 @@ ssh-keygen -t rsa -C "xxxxxxx@outlook.com"
 
 ## 检查是否有全局账户
 
-{% highlight shell %}
+```shell
 git config --global user.name
 git config --global user.email
-{% endhighlight %}
+```
 
 若已存在全局账户，则会在终端显示出来，这时候我们需要把全局账户清除。
 
-{% highlight shell %}
+```shell
 git config --global --unset user.name
 git config --global --unset user.email
-{% endhighlight %}
+```
 
 ## 配置config文件
 打开`~/.ssh/`目录下的`config`文件，输入以下内容：
 
-{% highlight shell %}
+```shell
 # First Account
 Host github.com
 HostName github.com
@@ -62,15 +62,15 @@ Host gitlab.com
 HostName gitlab.com
 User Gringe
 IdentityFile ~/.ssh/id_rsa_sec
-{% endhighlight %}
+```
 
 ## 在仓库单独设置账户
 假如上述的方法不适用，可以**直接**在你的项目根目录下设置该项目使用的**账户名**和**账户邮箱**。
 
-{% highlight shell %}
+```shell
 in your repo $ git config user.name "xxx"
 in your repo $ git config user.email "xxxx@gmail.com"
-{% endhighlight %}
+```
 
 这样就完成对单独项目的账户设置了。
 

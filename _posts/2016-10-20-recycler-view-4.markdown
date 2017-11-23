@@ -32,9 +32,9 @@ index: 1
 
 `ItemTouchHelper`的实例化需要`ItemTouchHelper.Callback`作为参数：
 
-{% highlight Java %}
+```java
 mItemTouchHelper = new ItemTouchHelper(ItemTouchHelper.Callback callback);
-{% endhighlight %}
+```
 
 ## ItemTouchHelper.Callback
 
@@ -43,7 +43,7 @@ mItemTouchHelper = new ItemTouchHelper(ItemTouchHelper.Callback callback);
 ### getMovementFlags
 该方法规定了`item`拖拽和滑动的方向。
 
-{% highlight Java %}
+```java
 public int getMovementFlags(RecyclerView recyclerView, RecyclerView.ViewHolder viewHolder) {
     int dragFlags = 0, swipeFlags = 0;
     if (recyclerView.getLayoutManager() instanceof LinearLayoutManager) {
@@ -55,7 +55,7 @@ public int getMovementFlags(RecyclerView recyclerView, RecyclerView.ViewHolder v
     }
     return makeMovementFlags(dragFlags, swipeFlags);
 }
-{% endhighlight %}
+```
 
 `dragFlags`和`swipeFlags`分别代表拖拽的方向和滑动的方向。  
 
@@ -66,7 +66,7 @@ public int getMovementFlags(RecyclerView recyclerView, RecyclerView.ViewHolder v
 ### onMove
 该方法在`item`被移动时被调用，通常作数据的交换处理。
 
-{% highlight Java %}
+```java
 public boolean onMove(RecyclerView recyclerView, RecyclerView.ViewHolder viewHolder, RecyclerView.ViewHolder target) {
 	int from = viewHolder.getAdapterPosition();
 	int to = target.getAdapterPosition();
@@ -74,7 +74,7 @@ public boolean onMove(RecyclerView recyclerView, RecyclerView.ViewHolder viewHol
 	adapter.notifyItemMoved(from, to);
 	return true;
 }
-{% endhighlight %}
+```
 
 在本例中，通过`viewHolder`的`getAdapterPosition`方法得到被移动`item`和目前位置的`item`各自在数据源中的索引，利用索引交换数据源中对应的值，并使用`adapter.notifyItemMoved()`来更新视图。  
 
@@ -83,48 +83,48 @@ public boolean onMove(RecyclerView recyclerView, RecyclerView.ViewHolder viewHol
 ### onSwiped
 该方法在`item`被滑动**完成**后调用，一般滑动指的是左右滑动。可以在这个方法里面作数据的删除操作。
 
-{% highlight Java %}
+```java
 public void onSwiped(RecyclerView.ViewHolder viewHolder, int direction) {
 	int apos = viewHolder.getAdapterPosition();
 	int lpos = viewHolder.getLayoutPosition();
 	adapter.notifyItemRemoved(lpos);
 	adapter.data.remove(apos);
 }
-{% endhighlight %}
+```
 
 ### onSelectedChanged
 该方法在`item`的状态开始改变时调用。可以在方法里判断`actionState`的值来作出相应操作，如`actionState`判定为拖拽时改变`item`的背景等。
 
-{% highlight Java %}
+```java
 public void onSelectedChanged(RecyclerView.ViewHolder viewHolder, int actionState) {
 	super.onSelectedChanged(viewHolder, actionState);
 	if (actionState==ItemTouchHelper.ACTION_STATE_DRAG) {
 			viewHolder.itemView.setBackground(ContextCompat.getDrawable(DragAnimActivity.this, R.drawable.radius_highlight));
 	}
 }
-{% endhighlight %}
+```
 
 ### onChildDraw
 该方法在`item`的状态正在改变时调用，也可以通过`actionState`作出相应操作，比如在方法里作一些动画效果。此处在`actionState`判定为滑动时，使`item`的透明度随着滑动距离而变化。
 
-{% highlight Java %}
+```java
 public void onChildDraw(Canvas c, RecyclerView recyclerView, RecyclerView.ViewHolder viewHolder, float dX, float dY, int actionState, boolean isCurrentlyActive) {
 	super.onChildDraw(c, recyclerView, viewHolder, dX, dY, actionState, isCurrentlyActive);
 	if (actionState == ItemTouchHelper.ACTION_STATE_SWIPE) {
 			viewHolder.itemView.setAlpha(1 - Math.abs(dX) / 1080);
 	}
 }
-{% endhighlight %}
+```
 
 ### clearView
 该方法在`item`的状态改变结束时调用，一般用来清除`onSelectedChanged`中设置的样式（重置样式）。同样可以通过判定`actionState`的数值来作出不同操作。
 
-{% highlight Java %}
+```java
 public void clearView(RecyclerView recyclerView, RecyclerView.ViewHolder viewHolder) {
 	super.clearView(recyclerView, viewHolder);
 	viewHolder.itemView.setBackground(ContextCompat.getDrawable(DragAnimActivity.this, R.drawable.radius_white));
 }
-{% endhighlight %}
+```
 
 ## 效果
 <img src="/screenshots/recycler-view-anim.gif"/>

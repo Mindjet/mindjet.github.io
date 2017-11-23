@@ -17,15 +17,15 @@ With `Github-Api`, it's simple to get information from [Github.com](https://gith
 
 From [this guide](https://developer.github.com/v3/repos/#list-user-repositories), we know that using:
 
-{% highlight shell %}
+```bash
 GET https://api.github.com/users/:username/repos
-{% endhighlight %} 
+```
 can list someone's repos. 
  
 Using `OkHttp` makes it much easier.  
 The code fragment below is what I do with `OkHttp` to get results:
  
-{% highlight Java %}
+```java
 private final String REPO_USER_PREFIX = "https://api.github.com/users/";
 private final String REPO_USER_POSTFIX = "/repos?sort=created";  //get the repos sorted by created date
 
@@ -43,11 +43,11 @@ mOkHttpClient.newCall(request).enqueue(new Callback() {
 			System.out.println(response.body().string());
 	}
 }
-{% endhighlight %}
+```
  
  Ok, now I get the repos of mine, and the results come back in format of `Json` like:
  
-{% highlight Json %}
+```json
 [
   {
     "id": 64843937,
@@ -89,7 +89,7 @@ mOkHttpClient.newCall(request).enqueue(new Callback() {
   },
   ...
 ]
-{% endhighlight %}
+```
 
 
 ## Decode data
@@ -99,7 +99,7 @@ Next, we are gonna decode the `Json` to `POJO`.
 
 Let's make a `Java Object` named `RepoInfo`:
 
-{% highlight Java %}
+```java
 public class RepoInfo {
     @SerializedName("name") public String repoName = null;
     public String description = null;
@@ -108,16 +108,16 @@ public class RepoInfo {
     @SerializedName("forks_count") public int forkCount = 0;    
     @SerializedName("stargazers_count") public int StarCount = 0;
 }
-{% endhighlight %}
+```
 
 Do remember to use annotation `@SerializedName` wherever your variable name is not the same as the key name in the `Json`.
 
 After this, the `Json` can be easily transfer to `Java Object` using `Gson` like this:
 
-{% highlight Java %}
+```java
 Gson mGson = new Gson();
 List<RepoInfo> mRepoInfoList = mGson.fromJson(response.body().string(), new TypeToken<List<RepoInfo>>() {}.getType());
-{% endhighlight %}
+```
 The decode operation is supposed to be done in a worker thread, like in `onResponse` method.
 
 Now we get what we want.
@@ -134,9 +134,9 @@ Oh you may ask that how can I get the profile of a specific user like the first 
 
 You can get it by:
 
-{% highlight shell %}
+```bash
 GET https://api.github.com/users/:username
-{% endhighlight %}
+```
 
 The result still comes back in `Json`, I am sure that you can decode the it and display it just in the same way I do above.
 

@@ -17,9 +17,9 @@ index: 6
 
 The line below is supposed to added to the `build.gradle` of your module.
 
-{% highlight Gradle %}
+```groovy
 compile 'com.facebook.fresco:fresco:0.14.1'
-{% endhighlight %}
+```
 
 ## Simple sample
 Here I use `SimpleDraweeView` first to see what `Fresco` can do.
@@ -27,47 +27,47 @@ Here I use `SimpleDraweeView` first to see what `Fresco` can do.
 ### import namespace
 First of all, import the namespace `fresco` in `xml`:
 
-{% highlight XML %}
+```xml
 xmlns:fresco="http://schemas.android.com/apk/res-auto"
-{% endhighlight %}
+```
 
 ### use widget
 
-{% highlight XML %}
+```xml
 <com.facebook.drawee.view.SimpleDraweeView
     android:id="@+id/sdv_fresco"
     android:layout_width="300dp"
     android:layout_height="300dp"/>
-{% endhighlight %}
+```
 
 It's required to set `layout_width` and `layout_height` with specific number, and `wrap_content` is not permitted here. It is because when the download completes, the layout will be re-adjusted, and if the size of `placeholderImage` dismatches the final image, the transition will be very sharp.
 
 You can use `wrap_content`, only when you want to display the image in a 
 specific aspect ratio.
 
-{% highlight Java %}
+```java
 <com.facebook.drawee.view.SimpleDraweeView
     android:id="@+id/sdv_fresco"
     android:layout_width="300dp"
     android:layout_height="wrap_content"
     fresco:viewAspectRatio="1.5"/>		<!-- it means width/height=1.5 -->
-{% endhighlight %}
+```
 
 ### initalize Fresco
 In the method `onCreate`, before the statement `setContentView()`, add:
 
-{% highlight Java %}
+```java
 Fresco.initialize(this);
-{% endhighlight %}
+```
 
 ### specify uri
 `Fresco` accepts uri in large range of formats, but make sure it's an absolute uri.
 
-{% highlight Java %}
+```java
 mSimpleDraweeView = (SimpleDraweeView) findViewById(R.id.sdv_fresco);
 String url = "http://urlc.cn/XR5hy3";
 mSimpleDraweeView.setImageURI(url);
-{% endhighlight %}
+```
 
 Now run your app and see what happen!
 
@@ -76,7 +76,7 @@ Now run your app and see what happen!
 ### static way
 You can do it in a static way, in `xml` file.
 
-{% highlight XML %}
+```xml
 <com.facebook.drawee.view.SimpleDraweeView
     android:id="@+id/sdv_fresco"			
     android:layout_width="300dp"
@@ -85,20 +85,20 @@ You can do it in a static way, in `xml` file.
     fresco:placeholderImage="@drawable/icon_retry"
     fresco:roundTopLeft="false"
     fresco:roundedCornerRadius="20dp"/>
-{% endhighlight %}
+```
 See more attributes in [official document](https://www.fresco-cn.org/docs/using-drawees-xml.html).
 
 ### dynamic way
 You can do it in a dynamic way, in `java` file, it relys on `GenericDraweeHierarchy`.
 
-{% highlight Java %}
+```java
 GenericDraweeHierarchyBuilder builder = new GenericDraweeHierarchyBuilder(getResources());
 GenericDraweeHierarchy hierarchy = builder
         .setFadeDuration(1000)
         .setPlaceholderImage(R.drawable.icon_loading)
         .build();
 mSimpleDraweeView.setHierarchy(hierarchy);
-{% endhighlight %}
+```
 
 ### outcome
 <img src="/screenshots/fresco-radius.png" width="250"/>
@@ -108,18 +108,18 @@ mSimpleDraweeView.setHierarchy(hierarchy);
 
 In another word, `DraweeHierarchy` controls the UI while `DraweeController` controls the action.
 
-{% highlight Java %}
+```java
 DraweeController controller = Fresco.newDraweeControllerBuilder()
         .setUri(url)
         .setOldController(mSimpleDraweeView.getController())
         .setTapToRetryEnabled(true)
         .build();
 mSimpleDraweeView.setController(controller);
-{% endhighlight %}
+```
 
 In fact, when we invoke method `draweeView.setImageUri()`, this is what happen: 
 
-{% highlight Java %}
+```java
 public void setImageURI(Uri uri, @Nullable Object callerContext) {
 	DraweeController controller = mSimpleDraweeControllerBuilder
 	    .setCallerContext(callerContext)
@@ -128,5 +128,5 @@ public void setImageURI(Uri uri, @Nullable Object callerContext) {
 	    .build();
 	setController(controller);
 }
-{% endhighlight %}
+```
 See that actually we use `DraweeController` here.

@@ -40,31 +40,31 @@ And in fact, `Activity` is class to implement the `ILoginView`, which means the 
 
 Here I implement some basic functionalities, like clearing an `EditText`, checking the user name and password.
 
-{% highlight Java %}
+```java
 public interface ILoginPresenter {
     void clear(View v);
     void doLogin(String userName, String pwd);
     void setProgressBarVisibility(int visibility);
 }
-{% endhighlight %}
+```
 
 ### ILoginView
 
 I need to implement some methods that can be called when the corresponding methods in `LoginPresenterImpl` are invoked.
 
-{% highlight Java %}
+```java
 public interface ILoginView {
     void onClearText(View v);
     void onResult(boolean pass);
     void onSetProgressBarVisibility(int visibility);
 }
-{% endhighlight %}
+```
 
 ### LoginPresenterImpl
 
 `LoginPresenterImpl` is a class to implement `ILoginPresenter`.
 
-{% highlight Java %}
+```java
 public class LoginPresenterImpl implements ILoginPresenter {
     private ILoginView mLoginView;
     private Handler handler;
@@ -97,7 +97,7 @@ public class LoginPresenterImpl implements ILoginPresenter {
         mLoginView.onSetProgressBarVisibility(visibility);
     }
 }
-{% endhighlight %}
+```
 
 As we can see, inside methods, the methods of `ILoginView` are called. `Handler` is used here just to make delay on purpose.
 
@@ -105,7 +105,7 @@ As we can see, inside methods, the methods of `ILoginView` are called. `Handler`
 
 To be exact, the `Activity` is a `LoginViewImpl`.
 
-{% highlight Java %}
+```java
 public class MVPActivity extends AppCompatActivity implements ILoginView, View.OnClickListener {
     private LoginPresenterImpl mPresenter;
     private Button mButtonLogin, mButtonClear;
@@ -143,7 +143,7 @@ public class MVPActivity extends AppCompatActivity implements ILoginView, View.O
         }
     }
 }
-{% endhighlight %}
+```
 
 Inside the methods implemented by `MVPActivity`, we do the work.
 

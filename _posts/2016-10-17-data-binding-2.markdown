@@ -16,7 +16,7 @@ index: 4
 ## 修改实体类
 我们之前的实体类是这样的：
 
-{% highlight Java %}
+```java
 public class User {
     private String name;
     private String age;
@@ -32,7 +32,7 @@ public class User {
         return age;
     }
 }
-{% endhighlight %}
+```
 为控件设置点击事件，在点击事件中修改 User 实例的成员变量，会发现虽然实例中的数据确实变了，但是在 UI 上并没有体现出来。
 
 有一种做法是让 User 继承`BaseObservable`，但是该方法麻烦而且代码量大，不作介绍。
@@ -41,7 +41,7 @@ public class User {
 
 此时，User 类变为：
 
-{% highlight Java %}
+```java
 public class User extends BaseObservable {
     public ObservableField<String> name = new ObservableField<>();
     public ObservableField<Integer> color = new ObservableField<>();
@@ -53,20 +53,20 @@ public class User extends BaseObservable {
         this.color.set(color);
     }
 }
-{% endhighlight %}
+```
 可以看见，代码极其简洁，不用设置`setter/getter`。需要注意的是，需要为每个变量**实例化**。成员变量以下面的方式赋值和获取：
 
-{% highlight Java %}
+```java
 user.name.set("xxxx");
 String name = user.name.get();
-{% endhighlight %}
+```
 
 ## 在点击（或其他）事件中改变数据
 如在按钮的点击事件中改变 user 的 name 值，`TextView`即随之更新。
 
-{% highlight Java %}
+```java
 user.name.set(String.valueOf(Math.random() * 100));
-{% endhighlight %}
+```
 
 ## 总结
 通过 demo 可以知道，使用 data-binding 直接省去了：

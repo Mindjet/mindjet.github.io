@@ -17,7 +17,7 @@ Actually, the `Model` here is not simply the one to store data we talked about. 
 
 Like here, I make an `Entity` named `Repo`:
 
-{% highlight Java %}
+```java
 public class Repo {
     @SerializedName("name")
     private String name;
@@ -29,18 +29,18 @@ public class Repo {
 	//setters and getters
 	...
 }
-{% endhighlight %}
+```
 The annotation in the code snippet is part of the `GsonConverter` system.
 
 Meanwhile, I make a `Model` named `RepoModel` (extends the Entity usually):
 
-{% highlight Java %}
+```java
 public class RepoModel extends Repo {
     public boolean isForked(){
         return getFork();
     }
 }
-{% endhighlight %}
+```
 Generally speaking, some of the business logics are implemeted in the `Model`.
 
 ## ViewModel
@@ -48,7 +48,7 @@ As its name tells, `ViewModel` is the agency to communicate `Model` and `View`, 
 
 Show the code first.
 
-{% highlight Java %}
+```java
 public class RepoViewModel {
     private ObservableField<String> name;
     private ObservableField<String> description;
@@ -66,7 +66,7 @@ public class RepoViewModel {
     //getters
     ...
 }
-{% endhighlight %}
+```
 As we can see, the memeber variables in the `ViewModel` have corresponding variables in `Model(Entity)`. In a way, the variables in `ViewModel` are temporary and sensitive while the ones in `Model` are relatively stable and not often to change (But it will change if they need to, of course).
 
 The variables in `ViewModel` is directly the ones showing or is going to show on UI.

@@ -24,7 +24,7 @@ index: 8
 ### 1. 编写两个ViewHolder
 `ButtonViewHolder`:
 
-{% highlight Java %}
+```java
 public static class ButtonViewHolder extends RecyclerView.ViewHolder {
     Button mButton;
 
@@ -33,11 +33,11 @@ public static class ButtonViewHolder extends RecyclerView.ViewHolder {
         mButton = (Button) itemView.findViewById(R.id.id_button);
     }
 }
-{% endhighlight %}
+```
 
 `ImageViewHolder`:
 
-{% highlight Java %}
+```java
 public static class ImageViewHolder extends RecyclerView.ViewHolder {
     TextView mTextView;
     ImageView mImageView;
@@ -48,19 +48,19 @@ public static class ImageViewHolder extends RecyclerView.ViewHolder {
         mImageView = (ImageView) itemView.findViewById(R.id.id_image);
     }
 }
-{% endhighlight %}
+```
 
 ### 2. 重写getItemViewType方法
 
-{% highlight Java %}
+```java
 public int getItemViewType(int position) {
     return mItemList.get(position).getItemType();
 }
-{% endhighlight %}
+```
 
 ### 3. 重写onCreateViewHolder方法
 
-{% highlight Java %}
+```java
 public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
     if (viewType == Item.ITEM_TYPE.ITEM_TYPE_BUTTON.ordinal())
         return new ButtonViewHolder(mInflater.inflate(R.layout.button_item, parent, false));
@@ -69,7 +69,7 @@ public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType
     }
     return null;
 }
-{% endhighlight %}
+```
 需要对传入的`viewType`进行判断，返回不同类型的`ViewHolder`，`ViewHolder`的实例化方式与[RecylerView-1](recycler-view-1.md)中的相同。  
 
 这里的`viewType`就是`getItemViewType`方法返回的值。
@@ -77,7 +77,7 @@ public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType
 
 ### 4. 重写onBindViewHolder方法
 
-{% highlight Java %}
+```java
 public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
     Item item = mItemList.get(position);
 
@@ -88,7 +88,7 @@ public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
         ((ImageViewHolder) holder).mImageView.setImageDrawable(item.getImage());
     }
 }
-{% endhighlight %}
+```
 
 需要对传入的`ViewHolder`对象进行判断，判断是`ButtonViewHolder`还是`ImageViewHolder`的实例，再根据不同情况进行`UI`的设定。
 
@@ -105,9 +105,9 @@ public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
 ### 2. 利用StaggerLayoutManager
 利用`StaggerLayoutManager`可以轻松地实现瀑布流效果。
 
-{% highlight Java %}
+```java
 mRecyclerView.setLayoutManager(new StaggerLayoutManager(3, StaggeredGridLayoutManager.VERTICAL));
-{% endhighlight %}
+```
 
 参数代表沿垂直方向扩展，每行有`3`个`item`。
 
@@ -116,7 +116,7 @@ mRecyclerView.setLayoutManager(new StaggerLayoutManager(3, StaggeredGridLayoutMa
 
 在`ViewHolder`为每个`TextView`设定随机高度：
 
-{% highlight Java %}
+```java
 public class MyViewHolder extends RecyclerView.ViewHolder {
     TextView mTextView;
 
@@ -128,7 +128,7 @@ public class MyViewHolder extends RecyclerView.ViewHolder {
         mTextView.setLayoutParams(params);
     }
 }
-{% endhighlight %}
+```
 需要注意的是，不要在`onBindViewHolder`中设置随机高度，不然会出现**滑动过程`item`高度发生变化**的现象。
 
 ### 4. 添加监听器
@@ -136,7 +136,7 @@ public class MyViewHolder extends RecyclerView.ViewHolder {
 
 在`onBindViewHolder`方法中：
 
-{% highlight Java %}
+```java
 public void onBindViewHolder(final MyViewHolder holder, final int position) {
     holder.mTextView.setText(data.get(position));
     holder.mTextView.setOnLongClickListener(new View.OnLongClickListener() {
@@ -149,7 +149,7 @@ public void onBindViewHolder(final MyViewHolder holder, final int position) {
         }
     });
 }
-{% endhighlight %}
+```
 
 注意到使用`notifyItemRemoved()`即可删除特定位置的`item`，同时调用`remove()`方法删除数据源的相应数据。需要十分注意的是，这里的位置不能使用方法参数中的`position`，而需要由`holder.getLayoutPosition()`重新获得。官方的解释是这样的：
 

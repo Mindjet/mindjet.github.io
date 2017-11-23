@@ -31,7 +31,7 @@ index: 3
 
 ### create
 
-{% highlight Java %}
+```java
 Observable<String> observable = Observable.create(new ObservableOnSubscribe<String>() {
     @Override
     public void subscribe(ObservableEmitter<String> e) throws Exception {
@@ -40,24 +40,24 @@ Observable<String> observable = Observable.create(new ObservableOnSubscribe<Stri
         e.onComplete();
     }
 });
-{% endhighlight %}
+```
 
 一个 `ObservableOnSubscribe<T>` （接口）作为参数传入，在其 `subscribe` 方法中，依次调用了两次 `onNext()` 和一次 `onComplete()` 方法。其实这里的 subscribe 方法相当于定义一个计划表，规定了在**订阅之后** `Observer` 要干些什么以及干的顺序是怎么样的。
 
 ### just
 
-{% highlight Java %}
+```java
 Observable<String> observable1 = Observable.just("Android", "iOS");
-{% endhighlight %}
+```
 
 效果跟上一个例子完全一样。
 
 ### fromXXX
 
-{% highlight Java %}
+```java
 String[] systems = {"Android", "iOS"};
 Observable<String> observable2 = Observable.fromArray(systems);
-{% endhighlight %}
+```
 
 效果与上面两个例子一样。
 
@@ -69,7 +69,7 @@ Observable<String> observable2 = Observable.fromArray(systems);
 
 可以以以下方式新建一个 Observer（Observer是一个接口）：
 
-{% highlight Java %}
+```java
 Observer<String> observer = new Observer<String>() {
     @Override
     public void onSubscribe(Disposable d) {
@@ -91,7 +91,7 @@ Observer<String> observer = new Observer<String>() {
         System.out.println("OBSERVER = ON COMPLETE");
     }
 };
-{% endhighlight %}
+```
 
 对于 Observer 而言，是按 `onSubscribe->onNext->onComplete/onError` 的顺序执行的（onComplete 和 onError 只会执行其中之一）。在 `onSubscribe` 方法中，参数 `Disposable` 运行随时打断这个执行链。
 
@@ -103,32 +103,32 @@ Observer<String> observer = new Observer<String>() {
 
 这样写的话我们可以：
 
-{% highlight Java %}
+```java
 Observable.create(xxx)
 	.map()
 	...
 	.subscribe(observer);
-{% endhighlight %}
+```
 
 而不是：
 
-{% highlight Java %}
+```java
 Observable observable = Observable.create(xxx)
 				.map()
 				...;
 observer.subscribe(observable);
-{% endhighlight %}
+```
 
 另外，RxJava 允许订阅非完整的 Observer。比如，你只关注 `onNext` 中做了什么，而不需要 `onComplete/onError` 等方法，这个时候这个特点就有用处了，不用去定义一个完整的 Observer。
 
 `Observable.subscribe()` 允许的参数类型如下：
 
-{% highlight Java %}
+```java
 Observable.subscribe();
 Observable.subscribe(Consumer<T> onNext);
 Observable.subscribe(Consumer<T> onNext, Consumer<Throwable> onError);
 Observable.subscribe(Consumer<T> onNext, Consumer<Throwable> onError, Action onComplete);
-{% endhighlight %}
+```
 
 需要对 Consumer 和 Action 作一下解释。
 

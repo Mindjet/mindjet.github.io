@@ -15,13 +15,13 @@ index: 2
 
 举个例子：
 
-{% highlight HTML %}
+```html
 POST /index.php HTTP/1.1
 user-agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_0)
 Accept: text/html
 Accept-Language: zh-cn,zh;q=0.5
 Referer: http://localhost/
-{% endhighlight %}
+```
 
 第一行是请求行，指出了请求的方式为`POST`，访问的是根目录下的`index.php`，`http`版本为`1.1`。
 
@@ -35,13 +35,13 @@ Referer: http://localhost/
 ### 实例化OkHttpClient
 一般来说，一个`app`只需要一个`OkHttpClient`：
 
-{% highlight Java %}
+```java
 OkHttpClient mClient = new OkHttpClient();
-{% endhighlight %}
+```
 
 ### Sync get（同步get）
 
-{% highlight Java %}
+```java
 private void syncGet(String url) {
     final Request request = new Request.Builder()
             .url(url)
@@ -61,14 +61,14 @@ private void syncGet(String url) {
         }
     }.start();
 }
-{% endhighlight %}
+```
 可以看到，`Request`通过`Request.Builder().build()`来生成。可以在生成过程中插入`url`，`header`等。
 
 同步方法相当于阻塞当前线程（UI线程），故需要开启子线程。通过`OkHttpClient.newCall(request).execute()`来访问网络。
 
 ### Async get（异步get）
 
-{% highlight Java %}
+```java
 private void asyncGet(String url) {
     Request request = new Request.Builder()
             .url(url)
@@ -76,13 +76,13 @@ private void asyncGet(String url) {
 
     mClient.newCall(request).enqueue(mPrintResponseCallback);
 }
-{% endhighlight %}
+```
 
 异步方式，`request`的生成方式跟同步一样，但是执行使用的是`enqueue`方法。`enqueue`字眼说明了是进入线程调度，而不是直接阻塞当前线程。  
 
 `enqueue`方法需要传入一个`Callback`接口，这里自定义一个`Callback`接口：
 
-{% highlight Java %}
+```java
 private class printResponseCallback implements Callback {
     @Override
     public void onFailure(Call call, IOException e) {
@@ -94,14 +94,14 @@ private class printResponseCallback implements Callback {
             System.out.println(response.body().string());
     }
 }
-{% endhighlight %}
+```
 
 需要重写两个方法，`onFailure`是访问失败时调用，`onResponse`是有`Response`返回时调用的方法，需要注意的是`onResponse`仍然是运行在**工作线程**，故不可以直接在此处更新`UI`。
 
 ## Post方式
 ### Sync post（同步post）
 
-{% highlight Java %}
+```java
 private void syncPost(String url) {
     MediaType MEDIA_TYPE_TEXT = MediaType.parse("text/plain");
     RequestBody requestBody = RequestBody.create(MEDIA_TYPE_TEXT, "Hello World");
@@ -120,7 +120,7 @@ private void syncPost(String url) {
         }
     }.start();
 }
-{% endhighlight %}
+```
 
 `post`请求需要指定`MediaType`，通过`RequestBody.create(MediaType, String)`可以将`String`类型转换成`MediaType`类型的`RequestBody`。
 
@@ -128,18 +128,18 @@ private void syncPost(String url) {
 
 ### Async post（异步post）
 
-{% highlight Java %}
+```java
 private void asyncPost(String url) {
     MediaType MEDIA_TYPE_TEXT = MediaType.parse("text/plain");
     RequestBody body = RequestBody.create(MEDIA_TYPE_TEXT, "Hello World");
     Request request = new Request.Builder().url(url).post(body).build();
     mClient.newCall(request).enqueue(mPrintResponseCallback);
 }
-{% endhighlight %}
+```
 
 ### 流方式构建实体
 
-{% highlight Java %}
+```java
 private void postFlow(String url){
     final MediaType MEDIA_TYPE_TEXT = MediaType.parse("text/plain");
     final String requestBody = "Hello World";
@@ -156,7 +156,7 @@ private void postFlow(String url){
     Request request = new Request.Builder().url(url).post(body).build();
     mClient.newCall(request).enqueue(mPrintResponseCallback);
 }
-{% endhighlight %}
+```
 
 这里创建了 `RequestBody` 的一个匿名子类。该子类的 `contentType` 方法需要返回内容的媒体类型，而 `writeTo` 方法的参数是一个 `BufferedSink` 对象。需要做的就是把请求的内容写入到 `BufferedSink` 对象。
 
@@ -167,7 +167,7 @@ private void postFlow(String url){
 
 举个例子：
 
-{% highlight HTML %}
+```html
 HTTP/1.1 200 OK
 Date: Mon, 27 Jul 2009 12:28:53 GMT
 Server: Apache/2.2.14 (Win32)
@@ -175,7 +175,7 @@ Last-Modified: Wed, 22 Jul 2009 19:15:56 GMT
 Content-Length: 88
 Content-Type: text/html
 Connection: Closed
-{% endhighlight %}
+```
 
 通过`Response`对象，使用`response.body()`可以获得`message-body`，通过`request.headers`可以得到集合对象`Headers`。利用`headers.name(index)`和`headers.value(index)`可以分别得到每个`header`的名字和值。
 

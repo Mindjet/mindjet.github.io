@@ -14,28 +14,28 @@ index: 9
 ## 定义监听器接口
 为了保证`RecyclerViewAdapter`的解耦性，此处将监听器接口定义在适配器的外部。
 
-{% highlight Java%}
+```java
 public interface onItemClickListener {
     void onNormalClickListener(View view, String string, int position);
     void onLongClickListener(View view, String string, int position);
 }
-{% endhighlight %}
+```
 接口中实现了**普通点击**和**长按**两种点击事件，实现多少种类型看个人需求。
 
 
 ## 监听器实例化
 在`adapter`内部，维护一个`onItemClickListener`类型的全局变量`mOnItemClickListener`，并为其设置`setter`：
 
-{% highlight Java%}
+```java
 private ListenerActivity.onItemClickListener mOnItemClickListener;
 public void setOnItemClickListener(ListenerActivity.onItemClickListener onItemClickListener) {
     mOnItemClickListener = onItemClickListener;
 }
-{% endhighlight %}
+```
 
 同时，在外部重写监听器的内部方法，并把监听器通过`setter`设置给`adapter`：
 
-{% highlight Java%}
+```java
 final ListenerAdapter adapter = new ListenerAdapter(data, this);
 adapter.setOnItemClickListener(new onItemClickListener() {
     @Override
@@ -51,41 +51,41 @@ adapter.setOnItemClickListener(new onItemClickListener() {
 });
 
 mRecyclerView.setAdapter(adapter);
-{% endhighlight %}
+```
 在`onNormalClickListener`方法中`log`出被点击`view`的信息，而在`onLongClickListener`方法中删除被点击的`item`。
 
 ## 监听器绑定
 `adapter`需要实现`View.onClickListener`和`View.onLongClickListener`方法：
 
-{% highlight Java%}
+```java
 public class ListenerAdapter extends RecyclerView.Adapter<ListenerAdapter.TextViewHolder> implements View.OnClickListener, View.OnLongClickListener 
-{% endhighlight %}
+```
 
 在`adapter`的`onCreateViewHolder`方法中，为`view`绑定监听器：
 
-{% highlight Java%}
+```java
 public TextViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
     View view = mInflater.inflate(R.layout.text_item, parent, false);
     view.setOnClickListener(this);
     view.setOnLongClickListener(this);
     return new TextViewHolder(view);
 }
-{% endhighlight %}
+```
 
 ## 数据与view绑定
 在点击事件中，唯一传入的参数是`view`。如`onclick(View v)`，如果想获取该`view`的更多信息，需要将对应的`holder`绑定到`view`上。
 
-{% highlight Java%}
+```java
 public void onBindViewHolder(TextViewHolder holder, int position) {
     holder.mTextView.setText(data.get(position));
     holder.itemView.setTag(holder);
 }
-{% endhighlight %}
+```
 
 ## 点击事件中调用接口方法
 `adapter`实现了`View.onClickListener`和`View.onLongClickListener`接口，需要重写接口的两个方法`onClick`和`onLongClick`，在这两个方法中调用自定义接口`onItemClickListener`中对应的方法：
 
-{% highlight Java%}
+```java
 @Override
 public void onClick(View v) {
     if (mOnItemClickListener != null) {
@@ -102,7 +102,7 @@ public boolean onLongClick(View v) {
     }
     return true;
 }
-{% endhighlight %}
+```
 
 注意到，可以使用`view.getTag()`方法获得对应的`holder`，而通过`holder`的`getLayoutPosition()`等又可以获得更多信息。
 

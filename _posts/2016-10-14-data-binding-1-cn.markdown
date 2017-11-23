@@ -20,7 +20,7 @@ index: 1
 ## 导入
 　　基于 Andoird Studio 开发，则在 module 所属的`build.gradle`文件中加入：  
 
-{% highlight Gradle %}
+```groovy
 android{
 	xxx
 	...
@@ -28,16 +28,16 @@ android{
 		enable = true
 	}
 }
-{% endhighlight %}
+```
 
 　　另外，需要在项目的`build.gradle`中加入：
 
-{% highlight Gradle %}
+```groovy
 dependencies{
 	...
 	classpath 'com.android.databinding:dataBinder:1.0-rc0'
 }
-{% endhighlight %}
+```
 
 
 ## 使用
@@ -46,7 +46,7 @@ dependencies{
 
 　　假设我们有实体类`User`，其中有两个字符串成员变量`name`和`age`。使用 data-binding ，需要为实体类设置`getter`。
   
-{% highlight Java %}
+```java
 public class User {
     private String name;
     private String age;
@@ -64,12 +64,12 @@ public class User {
         return age;
     }
 }
-{% endhighlight %}
+```
 
 　　对于 layout 文件，最外层的节点必须为`<layout></layout>`，在其中通过`<data>`标签引入 variable ，或者使用`import`导入系统自带的类。  
 　　而在控件中，利用`@{bean.xxx}`则可以直接引入数据。
   
-{% highlight XML %}
+```xml
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android">
     <data>
@@ -90,16 +90,15 @@ public class User {
             android:text="@{user.name}"/>
     </LinearLayout>
 </layout>
-
-{% endhighlight %}
+```
 
 　　对于使用了`<layout>`节点的 xml 布局文件， databinding 会自动为其生成`Binding`类，如此处的 activity_main.xml 则生成 ActivityMainBinding.java ，利用该类可以实现数据的绑定。
 
-{% highlight Java %}
+```java
 ActivityMainBinding mBinding = DataBindingUtil.setContentView(R.layout.activity_main);
 User user = new User("21","Mindjet");
 mBinding.setUser(user);
-{% endhighlight %}
+```
 
  - **例子2： ListView 与 Data-binding**  
   
@@ -111,7 +110,7 @@ mBinding.setUser(user);
 
 　　在布局文件中，需要引入`MyBindingAdapter`和`User`:
 
-{% highlight XML %}
+```xml
 <data>
     <variable
         name="user"
@@ -121,24 +120,24 @@ mBinding.setUser(user);
         name="adapter"
         type="com.mindjet.data_binding_sample.MyBindingAdapter"/>
 </data>
-{% endhighlight %}
+```
 
 　　在控件中加入数据：
 
-{% highlight XML %}
-<TextView  
+```xml
+<TextView
      android:id="@+id/tv_name"  
      android:layout_width="wrap_content"  
      android:layout_height="wrap_content"  
      android:onClick="@{adapter.onclickListener}" 
      android:text="@{user.name}"/>
-{% endhighlight %}
+```
 
 　　注意到 onClick 事件也可以通过 databinding 来绑定。
 
 　　回到`MyBindingAdapter`中，主要是`getView`方法：
 
-{% highlight Java %}
+```java
 public View getView(int position, View convertView, ViewGroup parent) {
     if (convertView == null) {
         mBinding = DataBindingUtil.inflate(mInflater, R.layout.listviewitem_binding, parent, false);
@@ -152,7 +151,7 @@ public View getView(int position, View convertView, ViewGroup parent) {
     mBinding.setAdapter(this);
     return convertView;
 }
-{% endhighlight %}
+```
 
 　　其中，`mBinding`是根据 xml 布局文件生成的 Binding 类，通过 DataBindingUtil 的`inflate`方法可以返回该对象，将该对象与 xml 布局文件绑定起来。  
 　　注意到，当 convertView 为空时，需要绑定，并且通过 Binding 对象的`getRoot`方法可以返回 convertView 。  
@@ -162,7 +161,7 @@ public View getView(int position, View convertView, ViewGroup parent) {
 
 　　我们利用`@{adapter.onclickListener}`为控件设置监听器，意味着在 MyBindingAdapter 中需要有一个监听器成员变量：
 
-{% highlight Java %}
+```java
 public class MyOnclickListener implements View.OnClickListener{
     @Override
     public void onClick(View v) {
@@ -170,7 +169,7 @@ public class MyOnclickListener implements View.OnClickListener{
         System.out.println(tv.getText());
     }
 }
-{% endhighlight %}
+```
 
 　　注意，监听器类的访问权限须为`public`，因为在 Binding 类中会直接引用该类。同时需要实例化出该 onclickListener 并且编写`getOnclickListener`方法。
 
