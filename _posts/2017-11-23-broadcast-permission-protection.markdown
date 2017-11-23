@@ -4,7 +4,7 @@ title: Android 广播权限保护
 date:  2017-11-23 10:20:05  0800
 categories: [coding, android]
 permalink: /:categories/:title
-index: 2
+index: 10
 ---
 
 ## 为什么需要权限保护

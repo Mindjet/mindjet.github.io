@@ -4,7 +4,7 @@ title: Android 与 Javascript 的交互
 date:  2017-10-26 17:21:05 +0800
 categories: [coding, android]
 permalink: /:categories/:title
-index: 1
+index: 12
 ---
 
 *文中 Android 端代码均用 Kotlin*

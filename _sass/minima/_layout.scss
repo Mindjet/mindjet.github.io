@@ -12,7 +12,7 @@
 
 .site-title {
   font-size: 30px;
-  font-weight: 300;
+  font-weight: 500;
   line-height: 56px;
   letter-spacing: -1px;
   margin-bottom: 0;
@@ -254,11 +254,14 @@
 
 .post-category{
   float: left;
-  font-family: "Source Sans Pro";
-  border: 1px solid #333;
-  margin: 5px 8px;
-  padding: 0 5px;
-  border-radius: 10px;
+  font-family: Consolas, serif;
+  //margin: 5px 8px;
+  margin-top: 5px;
+  margin-bottom: 5px;
+  margin-right: 8px;
+  padding: 0 8px;
+  background-color: #efefef;
+  border-radius: 5px;
 
   @include media-query($on-laptop) {
     font-size: 13px;
@@ -273,6 +276,8 @@
   h2 {
     font-size: 32px;
     border-bottom: 1px solid #ccc;
+    padding-bottom: 10px;
+    padding-top: 5px;
     letter-spacing: -1px;
 
     @include media-query($on-laptop) {
