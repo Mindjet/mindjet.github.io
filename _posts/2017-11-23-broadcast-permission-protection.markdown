@@ -34,7 +34,7 @@ index: 2
 
 我们在广播接收者一侧定义发送者应拥有的权限，并且在注册广播接收者时指明该权限：
 
-{%highlight xml%}
+```xml
 <permission android:name="io.github.mindjet.SEND_PERMISSION" />
 
 <receiver android:name="MyBroadcastReceiver"
@@ -43,15 +43,15 @@ index: 2
             <action android:name="io.github.mindjet.JUST_BROADCAST" />
     </intent-filter>
 </receiver>
-{%endhighlight%}
+```
 在广播发送者一侧使用该权限：
-{%highlight xml%}
+```xml
 <uses-permission android:name="io.github.mindjet.SEND_PERMISSION" />
-{%endhighlight%}
+```
 之后便可以发送广播并接收了：
-{%highlight java%}
+```java
 sendBroadcast(new Intent("io.github.mindjet.JUST_BROADCAST"));
-{%endhighlight%}
+```
 其他不拥有 `io.github.mindjet.SEND_PERMISSION` 权限的发送者可以将广播发送出去，但是接收者对其不理不睬。
 
 ## 限制广播接收者
@@ -59,17 +59,17 @@ sendBroadcast(new Intent("io.github.mindjet.JUST_BROADCAST"));
 上面说到，我们不能让广播发送者的广播随随便便地被接收者接收，只能让那些拥有约定权限的接收者接受。
 
 我们在广播发送者一侧定义接收者应拥有的权限：
-{%highlight xml%}
+```xml
 <permission android:name="io.github.mindjet.RECEIVE_PERMISSION" />
-{%endhighlight%}
+```
 然后，在发送广播时，声明这是一条有权限检查的广播（第二个参数代表接收者应拥有的权限）：
-{%highlight java%}
+```java
 sendBroadcast(new Intent("io.github.mindjet.JUST_BROADCAST"), "io.github.mindjet.RECEIVE_PERMISSION");
-{%endhighlight%}
+```
 接收者一侧则需要使用该权限：
-{%highlight xml%}
+```xml
 <uses-permission android:name="io.github.mindjet.RECEIVE_PERMISSION" />
-{%endhighlight%}
+```
 其他不拥有 `io.github.mindjet.RECEIVE_PERMISSION` 的接收者无权接收这个广播。
 
 ## 双向权限保护
@@ -81,19 +81,19 @@ sendBroadcast(new Intent("io.github.mindjet.JUST_BROADCAST"), "io.github.mindjet
 也就是说，发送方有接收方规定的发送权限的同时，接收方也得有发送方规定的接收权限。
 
 那么发送方一侧：
-{%highlight xml%}
+```xml
 <!-- 声明接收权限 -->
 <permission android:name="io.github.mindjet.RECEIVE_PERMISSION" />
 <!-- 使用发送权限 -->
 <uses-permission android:name="io.github.mindjet.SEND_PERMISSION" />
-{%endhighlight%}
+```
 同时发送广播时，使用带权限检查的方式：
-{%highlight java%}
+```java
 sendBroadcast(new Intent("io.github.mindjet.JUST_BROADCAST"), "io.github.mindjet.RECEIVE_PERMISSION");
-{%endhighlight%}
+```
 
 相应地，接收方一侧：
-{%highlight xml%}
+```xml
 <!-- 声明发送权限 -->
 <permission android:name="io.github.mindjet.SEND_PERMISSION" />
 <!-- 使用接收权限 -->
@@ -105,9 +105,10 @@ sendBroadcast(new Intent("io.github.mindjet.JUST_BROADCAST"), "io.github.mindjet
             <action android:name="io.github.mindjet.JUST_BROADCAST" />
     </intent-filter>
 </receiver>
-{%endhighlight%}
+```
 这样就能实现双向的权限保护了。
 
+终于，将军在军帐里运筹帷幄，天子在龙椅上君临天下。
 
 ## protectionLevel
 
@@ -117,19 +118,31 @@ sendBroadcast(new Intent("io.github.mindjet.JUST_BROADCAST"), "io.github.mindjet
 
 `protectionLevel` 有以下几个属性值：
 
-{%endhighlight%}
+```
 normal              默认值，只要申请便能使用
 dangerous           同上
 signature           apk 签名一致才能使用
 signatureOrSystem   apk 签名一致或者系统应用才能使用
-{%endhighlight%}
+```
 
 比如说，一家公司开发出了几款产品（签名一致），并且定义了广播发送和接收权限，保护等级都是 `signature`：
 
-{%highlight xml%}
+```xml
 <permission android:name="io.github.mindjet.SEND_PERMISSION"
         protectionLevel="signature" />
 <permission android:name="io.github.mindjet.RECEIVE_PERMISSION"
         protectionLevel="signature" />
-{%endhighlight%}
+```
 那么这两个权限，只有这家公司自家的产品可以申请到，也就避免了广播被外部 app 利用的情况。
+
+### ———
+技术上的问题，欢迎讨论。
+
+最近在 [Github](https://github.com/Mindjet) 上维护的项目：
+* [LiteWeather](https://github.com/Mindjet/LiteWeather) **[一款用 Kotlin 编写，基于 MD 风格的轻量天气 App]**，对使用 Kotlin 进行实际开发感兴趣的同学可以看看，项目中会使用到 Kotlin 的委托机制、扩展机制和各种新奇的玩意。
+* [LiteReader](https://github.com/Mindjet/LiteReader) **[一款基于 MD 的极轻阅读 App，提供知乎日报、豆瓣电影等资源]**，项目主要使用了 MVVM 设计模式，界面遵循 Material Design 规范，提供轻量的阅读体验。
+* [LiveMVVM](https://github.com/Mindjet/LiveMVVM) **[Kotlin 编写的 Android MVVM 框架，基于 android-architecture]**，轻量 MVVM+Databinding 开发框架。
+* [AnkoUtil](https://github.com/Mindjet/AnkoUtil) **[Kotlin 编写的 Android 扩展库]**。
+
+欢迎 star/fork/follow 提 issue 和 PR。
+
