@@ -1,7 +1,7 @@
 ---
 layout: post
-title: 自定义View常识
-date: 2017-09-01 16:20:05 +0800
+title: 开源项目 RevealLayout
+date: 2017-11-28 09:54:05 +0800
 categories: [coding, android, ui]
 permalink: /:categories/:title
 index: 14
