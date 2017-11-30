@@ -23,6 +23,11 @@ body {
        -o-font-feature-settings: "kern" 1;
           font-feature-settings: "kern" 1;
   font-kerning: normal;
+  ::selection {
+    background: #444545;
+    color: #ffffff;
+    border-radius: 10px;
+  }
 }
 
 
