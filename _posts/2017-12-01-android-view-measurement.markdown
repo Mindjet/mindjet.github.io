@@ -29,7 +29,7 @@ View 的测量机制主要涉及到 **MeasureSpec**、**View 的测量** 和 **V
 
 最后我们在界面上看到的效果是，一个 200 dp 的正方形容器包裹了一个 `TextView`，该 `TextView` 占满了容器，即其宽高也是 200 dp。
 
-那么，`FrameLayout` 是怎么告知 `TextView` 是怎么获知父容器的宽高的呢？`TextView` 又是怎么根据父容器的宽高来确定自己的宽度呢？这都跟 `MeasureSpec` 有关。
+那么，`FrameLayout` 是怎么告知 `TextView` 自己宽高的呢？`TextView` 又是怎么据此来确定自己的宽度呢？这都跟 `MeasureSpec` 有关。
 
 `MeasureSpec` 是对 View 的测量要求，它是一个 32 位的 int 值，高 2 为代表 `SpecMode`（测量模式），低 30 位代表 `SpecSize`（大小）。
 
@@ -45,7 +45,11 @@ View 的测量机制主要涉及到 **MeasureSpec**、**View 的测量** 和 **V
 
 View 的测量主要涉及到 `measure`， `onMeasure` 和 `setMeasuredDimension` 这三个方法。
 
+### measure
+
 `measure` 是被父容器调用的，根据传入的 `MeasureSpec` 结合自身的情况进行调整产生新的 `MeasureSpec`。
+
+### onMeasure
 
 `onMeasure` 是在 `measure` 方法中被调用，传入新的 `MeasureSpec`。（作为回调，可以在自定义 View 中定制）
 
@@ -55,6 +59,7 @@ protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
             getDefaultSize(getSuggestedMinimumHeight(), heightMeasureSpec));
 }
 ```
+### setMeasureDimension
 
 `setMeasureDimension` 是在 `onMeasure` 方法中被调用的，用以设置自身宽高，并将宽高保存起来。
 
@@ -75,9 +80,11 @@ protected final void setMeasuredDimension(int measuredWidth, int measuredHeight)
 
 ## ViewGroup
 
-我们先从 ViewGroup 如何确定子 View 的 `MeasureSpec` 说起。
+以下将子 View 称为 childView，父容器为 container。
 
-ViewGroup 会遍历去测量子 View，ViewGroup 本身有一个 `MeasureSpec`，上面说到子 View 的 `MeasureSpec` 由其自身 `LayoutParams` 和父容器的 `MeasureSpec`  而产生。
+### childView 的 MeasureSpec 受何影响？
+
+container 本身有一个 `MeasureSpec`，上面说到 childView 的 `MeasureSpec` 由其自身 `LayoutParams` 和 container 的 `MeasureSpec` 确定。
 
 `ViewGroup#measureChild` 中：
 
@@ -95,11 +102,11 @@ protected void measureChild(View child, int parentWidthMeasureSpec,
 }
 ```
 
-可以看到，子 View 宽度/高度 `MeasureSpec` 由 ViewGroup 的 `MeasureSpec` 、自身的 `LayoutParams`和 `padding` 共同产生。
+可以看到，childView 宽度/高度 `MeasureSpec` 由 container 的 `MeasureSpec` 、自身的 `LayoutParams`和 `padding` 共同产生。
+
+### 如何影响 childView 的 MeasureSpec
 
 接下来详细讲一下如何利用这三者生成子 View 的 `MeasureSpec`。
-
-以下将子 View 称为 childView，父容器为 container。
 
 假设我们是在生成 childView 的宽度 `MeasureSpec`。首先我们根据 container 的 `MeasureSpec` 获取其 `SpecMode` 和 `SpecSize`。将 `SpecSize` 减去 `padding` 即可得到父容器的内容宽度。
 
@@ -190,6 +197,8 @@ public static int getChildMeasureSpec(int spec, int padding, int childDimension)
         return MeasureSpec.makeMeasureSpec(resultSize, resultMode);
     }
 ```
+
+### container 自身如何测量？
 
 确定了子 View 的 `MeasureSpec`，我们看回 `ViewGroup#measureChild`：
 
