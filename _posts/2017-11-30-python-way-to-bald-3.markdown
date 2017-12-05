@@ -130,8 +130,11 @@ def return_lambda1(x, y):
 ```python
 # 声明装饰器
 def decorator(func):
-    print("call", func.__name__)
-    return func
+    def inner():
+        print("call", func.__name__)
+        return func()
+
+    return inner
 
 @decorator
 def foo():
@@ -150,13 +153,36 @@ foo()
 decorator(foo)
 ```
 
+那么问题来了，如果被装饰的函数是有参的呢？而且参数我们不知道有多少个呢？这里提供一种通用的做法：
+
+```python
+def decorator(func):
+    def inner(*args, **kw):
+        print("call", func.__name__)
+        return func(*args, **kw)
+
+    return inner
+
+@decorator
+def foo(x):
+    print(x)
+
+foo('hello')
+# call foo
+# hello
+```
+
 如果装饰器本身需要传入参数，比如 `@decorator(content)`，那么装饰器的声明需要再包裹一层：
 
 ```python
-def decorator(content):
+def decorator_0(content):
     def wrapper(func):
-        print(content, func.__name__)
-        return func
+        def inner(*args, **kw):
+            print(content, func.__name__)
+            return func(*args, **kw)
+
+        return inner
+
     return wrapper
 
 @decorator('hello')
@@ -168,4 +194,4 @@ foo('hi')
 # hi
 ```
 
-
+这样，我们就能在函数调用之前打印我们需要的东西而不改动原有的函数了。
