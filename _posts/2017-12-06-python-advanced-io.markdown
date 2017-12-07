@@ -324,3 +324,40 @@ with open('./dump.txt', 'r') as f:
 # '{"name": "genji", "weapon": "dart"}'
 ```
 
+上面涉及到的序列化都是对 `dict` 对象操作，其实更多的时候，我们的直接需求是对任意对象执行序列化，但是如果使用相同的方式，不能得到预期的结果：
+
+```python
+class Hero(object):
+    def __init__(self, name, sex, weapons):
+        self.name = 'genji'
+        self.sex = 'male'
+        self.weapons = 'dart', 'sword'
+        
+hero = Hero('genji', 'male', ('dart', 'sword'))
+json.dumps(hero)		# TypeError: <__main__.Hero object at 0x0000000002AF25F8> is not JSON serializable
+```
+
+抛出了 `TypeError` 异常，我们这个 `hero` 对象不是可序列化的。
+
+为了解决这个问题，我们可以在序列化时定义对象的序列化规则 `default`：
+
+```python
+json.dumps(hero, default=lambda o: {'name': o.name, 'sex': o.sex, 'weapons': o.weapons})
+```
+
+但是我们下次传进来一个不同类的实例，这个规则又得换了。
+
+有一种通用的做法，`object.__dict__` 保存了实例的变量：
+
+```python
+json.dumps(hero, default=lambda o: o.__dict__)
+```
+
+当然也可以直接直接反序列化得到对象 `object_hook`：
+
+```python
+with open('./dump.txt') as f:
+    hero = json.load(f, object_hook=lambda o: Hero(o['name'], o['sex'], o['weapons']))
+```
+
+
