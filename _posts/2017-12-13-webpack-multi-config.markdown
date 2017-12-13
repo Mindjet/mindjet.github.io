@@ -26,7 +26,7 @@ index: 11
 
 但其实生产环境和开发环境的大部分配置还是相同的，相当于我们需要写很多一模一样的配置代码，这一点也不 Geek。
 
-### Elegant approach
+## Elegant approach
 
 这里提出一种比较优雅的解决方案，即在 `webpack.config.js` 中判断环境进行配置。
 
