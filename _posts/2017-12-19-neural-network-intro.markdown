@@ -30,17 +30,17 @@ Wikipedia 对于人工神经网络的介绍：
 
 这里我们引入**权重 weight** 的概念，来衡量每个输入对输出 0 （或者 1）的影响；同时我们引入阈值来决定到达什么水平就输出 0 （或者 1）。
 
-![](/screenshots/perception-math.jpg)
+![](/screenshots/perceptron-math.jpg)
 
 使用多层感知器，可以建立起简单的决策模型：
 
-![](/screenshots/perception-layers.jpg)
+![](/screenshots/perceptron-layers.jpg)
 
 这里我们再引入一个重要的概念——**偏置 bias**。它的概念与阈值相反，表示达到一个标准有多容易（阈值表示达到一个标准有多难）。
 
 那么，上面我们对于感知器的数学定义可以变成：
 
-![](/screenshots/perception-math-bias.jpg)
+![](/screenshots/perceptron-math-bias.jpg)
 
 ## S 型神经元
 
