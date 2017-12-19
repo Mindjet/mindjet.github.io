@@ -4,10 +4,8 @@ title: 人工神经网络简介
 date: 2017-12-19 18:53:05 +0800
 categories: [coding, deep-learning, neural-network]
 permalink: /:categories/:title
-index: 8
+index: 8 
 ---
-
-<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=default"></script>  
 
 
 Wikipedia 对于人工神经网络的介绍：
@@ -32,7 +30,7 @@ Wikipedia 对于人工神经网络的介绍：
 
 这里我们引入**权重 weight** 的概念，来衡量每个输入对输出 0 （或者 1）的影响；同时我们引入阈值来决定到达什么水平就输出 0 （或者 1）。
 
-\\(ouput = \begin{cases} 1, & \mbox{if } \sum_{i} w_i x_i > \mbox{threshold}  \\ 0, & \mbox{if } \sum_{i} w_i x_i \leq \mbox{threshold}\end{cases}\\)
+![](/screenshots/perception-math.jpg)
 
 使用多层感知器，可以建立起简单的决策模型：
 
@@ -42,7 +40,7 @@ Wikipedia 对于人工神经网络的介绍：
 
 那么，上面我们对于感知器的数学定义可以变成：
 
-$$ouput = \begin{cases} 1, & \mbox{if } \sum_{i} w_i x_i + b >0  \\ 0, & \mbox{if } \sum_{i} w_i x_i+b \leq 0\end{cases}$$
+![](/screenshots/perception-math-bias.jpg)
 
 ## S 型神经元
 
@@ -66,12 +64,12 @@ $$ouput = \begin{cases} 1, & \mbox{if } \sum_{i} w_i x_i + b >0  \\ 0, & \mbox{i
 
 上面为 S 型神经元的函数图像，其数学表达为：
 
-$${\sigma(z) = \cfrac{1}{1 + e^{-z}}}$$,   其中 $${z = \sum_{i}x_iw_i + b}$$
+![](/screenshots/sigmoid-function-math.jpg)
 
-$${\sigma(z)}$$ 常被称为**逻辑函数**，所以 S 型神经元被称为**逻辑神经元**。
+`σ(z)` 常被称为**逻辑函数**，所以 S 型神经元被称为**逻辑神经元**。
 
-$${\sigma(z)}$$ 与阶跃不同，其输入的微小变化都可以在输出上体现出来，即 $${\Delta w_i}$$ 和 $${\Delta b}$$ 都会产生 $${\Delta \mbox{output}}$$：
+`σ(z)`  与阶跃不同，其输入的微小变化都可以在输出上体现出来，即 $${\Delta w_i}$$ 和 $${\Delta b}$$ 都会产生 $${\Delta \mbox{output}}$$：
 
-$${\Delta \mbox{output} \approx \sum_{i}\cfrac{\vartheta \mbox{output}}{\vartheta w_i}\Delta w_i + \cfrac{\vartheta \mbox{output}}{\vartheta b}\Delta b}$$
+![](/screenshots/output-diff.jpg)
 
 $${\vartheta}$$ 表示偏导数，如 $${\cfrac{\vartheta \mbox{output}}{\vartheta b}}$$ 表示 $$output$$ 对 $$b$$ 变量求导数，而将 $${w_i}$$ 作为常量看待。
