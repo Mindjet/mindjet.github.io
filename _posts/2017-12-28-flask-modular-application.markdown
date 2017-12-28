@@ -140,5 +140,3 @@ python manage.py runserver
 ```
 
 就可以让应用跑起来了。
-
-那么，单模块的开发模式将所有模块都放进了 `app.py`，`app.py` 庞大而且不利于多人同时开发。
