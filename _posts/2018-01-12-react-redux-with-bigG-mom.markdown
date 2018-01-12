@@ -20,7 +20,7 @@ index: 6
 
 这篇文章叫《React Redux与胖虎他妈》，因为在哆啦A梦里面，胖虎虽然很屌老是欺负大雄和小夫，但是在他妈面前没少挨揍，胖虎他妈还是他妈，所以这篇文章主要是介绍 React Redux 的一些进阶用法。
 
-<img src="http://img1.dzwww.com:8080/tupian_pl/20170107/28/16100677357641277340.jpg" width=350 />
+![](http://img1.dzwww.com:8080/tupian_pl/20170107/28/16100677357641277340.jpg)
 
 ## 多 Reducer
 
@@ -92,7 +92,8 @@ const mapStateToProps = ({ firstReducer: state }) => {
 
 这样一来可以有效地隔离各个模块之间的影响，也方便多人协作开发。
 
-<img src="http://img.mp.itc.cn/upload/20170219/2cffe6ad27064f169d8fe87fbc413fa3_th.jpeg" width=200 />
+![](http://img.mp.itc.cn/upload/20170219/2cffe6ad27064f169d8fe87fbc413fa3_th.jpeg)
+
 （由于胖虎他妈实在没什么表情，所以还是用胖虎开涮吧）
 
 ## 中间件
@@ -400,7 +401,7 @@ export default class DeepLayerComponent extends StoreAwareComponent {
 }
 ```
 
-###    
-
 这篇我就不作总结了。（逃
+
+![](http://imgsrc.baidu.com/forum/w%3D580/sign=73616351a76eddc426e7b4f309dab6a2/9611702762d0f703ec1ad86802fa513d2797c5d8.jpg)
 
