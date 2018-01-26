@@ -271,9 +271,11 @@ a {
 blockquote {
   color: $grey-color-dark;
   font-family: "Source Sans Pro"; 
-  border-left: 4px solid $grey-color-light;
-  padding-left: $spacing-unit / 2;
+  border-left: 4px solid $theme-color;
+  padding: $spacing-unit / 2;
   font-style: italic;
+  background-color: rgba(0,0,0,.02);
+  border-radius: 0 5px 5px 0;
 
   > :last-child {
     margin-bottom: 0;
