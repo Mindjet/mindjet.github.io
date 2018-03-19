@@ -190,6 +190,21 @@ li {
 }
 
 
+/**
+ * Tables
+ */
+table {
+  border-collapse:collapse;
+}
+
+table, td, th {
+  padding:10px;
+  border:1px solid black;
+}
+
+th {
+  background-color:#ccc;
+}
 
 
 /**
