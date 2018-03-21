@@ -8,7 +8,7 @@ layout: default
   <!-- do remember to update the value of modulo to the count of the images -->
   <!-- {% assign random = site.time | date: "%s%N" | modulo: 9 %} -->
   
-  <img src="{{ page.index | prepend: prefix | append: '.jpg' }}" style="width: 100%; margin: 0 0 40px 0; border-radius: 10px;">
+  <img class="post-banner" src="{{ page.index | prepend: prefix | append: '.jpg' }}" />
 
   <header class="post-header">
     <h1 class="post-title" itemprop="name headline">{{ page.title | escape }}</h1>

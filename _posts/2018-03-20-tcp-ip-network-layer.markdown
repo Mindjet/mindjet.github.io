@@ -9,7 +9,6 @@ index: 15
 
 > 网络层主要是定义网络地址和路由寻径，IP 是网络层的实现。
 
-{:toc}
 
 ## IP 地址
 
@@ -86,7 +85,7 @@ IP地址只是主机在网络层中的地址，若要将网络层中传送的数
 
 说了这么多，那么在网络层上，主机之间是如何通信的？
 
-![](http://img.blog.csdn.net/20160816145703426?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQv/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
+![](https://user-gold-cdn.xitu.io/2018/3/21/16248bcaab4a8999?w=816&h=605&f=png&s=22168)
 
 考虑两种情况：网段内通信和不同网段（网络）间通信。
 
